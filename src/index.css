@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+/* form input margin */
+.form-item {
+    margin-bottom: 14px !important;
+}
+
+/* form input error */
+.ant-form-item-explain-error{
+    color: #FF4D4F !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-family: "Roboto", sans-serif;
+    margin-top: 2px;
+}
+
+/* form input */
+.ant-input {
+    color: #122751;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+}
+
+/* ant input placeholder */
+.ant-input::placeholder {
+    color: #8D94A3 !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* select input */
+.ant-select-selection-item {
+    color: #122751;
+    font-size: 13px;
+    font-weight: 500 !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* select input placeholder text */
+.form-select-input .ant-select-selection-placeholder {
+    color: #8D94A3 !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+}
+
+/* date and time input */
+.time-input input {
+    color: #122751 !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* date and time placeholder */
+.time-input input::placeholder {
+    color: #8D94A3 !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* date and time icon color */
+.ant-picker-suffix {
+    color: #122751 !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* ant input label */
+.ant-form-item-label>label {
+    color: #122751 !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* checkbox label */
+.ant-checkbox-wrapper {
+    color: #122751;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+}
+
+.custom-checkbox .ant-checkbox+span a {
+    color: #122751;
+    /* text-decoration: underline; */
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+}
+
+
+/* table title */
+.custom-ant-table .ant-table-thead>tr>th {
+    color: #8D94A3 !important;
+    font-weight: 500;
+    font-size: 14px;
+    /* border: 1px solid #122751 !important; */
+    font-family: "Roboto", sans-serif;
+}
+
+/* collapse header color  */
+.ant-collapse-header {
+    color: #122751 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    padding: 10px !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Drawer Title center and color */
+.ant-drawer-title { 
+    color: #122751 !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Dropdown Text */
+.ant-dropdown-menu-title-content {
+    color: #122751 !important;
+    font-weight: 400 !important;
+    font-family: "Roboto", sans-serif;
+}
