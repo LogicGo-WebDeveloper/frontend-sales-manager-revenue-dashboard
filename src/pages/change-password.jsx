@@ -8,7 +8,7 @@ const ChangePassword = () => {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
-        console.log('Form Values:', values);
+        console.log('Form Valuesss:', values);
     };
 
     return (
