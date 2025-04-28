@@ -12,7 +12,7 @@ import CardIcon5 from '../assets/images/card-5-icon.png'
 import RecentPurchaseTable from '../components/recent-purchase-table.jsx';
 import { Drawer } from 'antd';
 import GeneratePromocodeDrawer from '../components/generate-promocode-drawer.jsx';
-import FilterDrawer from '../components/filter-drawer.jsx';
+import FilterDrawer from '../components/overview-filter-drawer.jsx';
 
 const Overview = () => {
 
@@ -21,7 +21,7 @@ const Overview = () => {
 
   return (
     <>
-      <div className="bg-[#F4F5F6] min-h-full px-10 md:px-40 py-6">
+      <div className="">
 
         {/* Top Header */}
         <div className="flex justify-between items-start flex-wrap gap-4 mb-6  ">
@@ -104,7 +104,7 @@ const Overview = () => {
           open={isFilterDrawerOpen}
           width={400}
         >
-          <FilterDrawer onClose={() => setFilterDrawerOpen(false)} />
+          <FilterDrawer onClose={() => setFilterDrawerOpen(false)} panelsToShow={['date', 'platform', 'project',]}/>
         </Drawer>
 
       </div>

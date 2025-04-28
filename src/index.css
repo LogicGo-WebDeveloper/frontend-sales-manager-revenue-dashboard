@@ -3,6 +3,7 @@
 
 body {
     font-family: "Roboto", sans-serif;
+    background-color: #F7F8FA;
 }
 
 /* form input margin */
@@ -11,7 +12,7 @@ body {
 }
 
 /* form input error */
-.ant-form-item-explain-error{
+.ant-form-item-explain-error {
     color: #FF4D4F !important;
     font-size: 12px !important;
     font-weight: 400 !important;
@@ -93,14 +94,27 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+/* Checkbox width */
+.ant-checkbox-group {
+    width: 100%;
+}
 
 /* table title */
 .custom-ant-table .ant-table-thead>tr>th {
     color: #8D94A3 !important;
-    font-weight: 500;
+    font-weight: 500 !important;
     font-size: 14px;
     /* border: 1px solid #122751 !important; */
     font-family: "Roboto", sans-serif;
+}
+
+/* table cell  */
+.ant-table-cell {
+    color: #122751 !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    font-family: "Roboto", sans-serif;
+    padding: 12px !important;
 }
 
 /* collapse header color  */
@@ -113,7 +127,7 @@ body {
 }
 
 /* Drawer Title center and color */
-.ant-drawer-title { 
+.ant-drawer-title {
     color: #122751 !important;
     text-align: center !important;
     font-weight: 600 !important;
@@ -127,3 +141,13 @@ body {
     font-weight: 400 !important;
     font-family: "Roboto", sans-serif;
 }
+
+
+
+
+
+
+
+
+
+

@@ -5,16 +5,19 @@ import Invoice from '../components/invoice';
 import PaymentMethod from '../components/payment-method';
 import { RiArrowRightSLine } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../config/route.const';
 
 const Setting = () => {
   const [activeMainTab, setActiveMainTab] = useState('profile');
   const [activeSubTab, setActiveSubTab] = useState('invoice');
+  const navigate = useNavigate();
 
   return (
-    <div className="bg-[#F4F5F6] min-h-full px-10 md:px-40 py-6">
+    <div className="">
       {/* Top Header */}
       <div className="flex items-center gap-4 mb-6">
-        <HiArrowNarrowLeft size={25} color="#122751" className="cursor-pointer" />
+        <HiArrowNarrowLeft size={25} color="#122751" className="cursor-pointer" onClick={() => navigate(ROUTES.DASHBOARD.OVERVIEW)} />
         <div>
           <h1 className="text-xl font-semibold text-[#122751]">Setting</h1>
           <p className="text-sm text-[#8D94A3] mt-1">
@@ -24,7 +27,7 @@ const Setting = () => {
       </div>
 
       {/* Main Card */}
-      <div className="bg-white rounded-lg shadow-sm flex min-h-[600px] overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm flex min-h-full overflow-hidden">
         {/* Sidebar */}
         <div className="border-r border-gray-200 w-64 p-6">
           {/* Main Tabs */}

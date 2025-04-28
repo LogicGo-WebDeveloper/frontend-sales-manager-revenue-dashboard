@@ -6,6 +6,8 @@ import { RiGlobalLine } from "react-icons/ri";
 import DeleteDrawer from './delete-drawer';
 import { IoIosArrowDown } from "react-icons/io";
 import DeleteTransactionImage from '../assets/images/delete-transaction-image.png';
+import { useNavigate } from 'react-router-dom';
+
 
 const columns = [
   {
@@ -18,33 +20,44 @@ const columns = [
     dataIndex: 'project',
     render: (text) => <span className="text-[#122751] font-medium">{text}</span>,
   },
-  {
-    title: 'Status',
-    dataIndex: 'status',
-    render: (status) => {
-      let color = 'default';
-      let text = status;
+    {
+        title: 'Status',
+        dataIndex: 'status',
+        render: (status) => {
+            let bgColor = '';
+            let textColor = '';
 
-      switch (status) {
-        case 'Purchased':
-          color = 'green';
-          break;
-        case 'Renewals':
-          color = 'red';
-          break;
-        case 'Trail':
-          color = 'blue';
-          break;
-        case 'Lifetime':
-          color = 'orange';
-          break;
-        default:
-          color = 'gray';
-      }
+            switch (status) {
+                case 'Purchased':
+                    bgColor = 'bg-[#D1FAE5]';
+                    textColor = 'text-[#059669]'; 
+                    break;
+                case 'Trial':
+                    bgColor = 'bg-[#D1F0FA]'; 
+                    textColor = 'text-[#266FDC]'; 
+                    break;
+                case 'Renewals':
+                    bgColor = 'bg-[#FEE2E2]'; 
+                    textColor = 'text-[#DC2626]'; 
+                    break;
+                case 'Lifetime':
+                    bgColor = 'bg-[#FEF3C7]'; 
+                    textColor = 'text-[#954614]'; 
+                    break;
+                default:
+                    bgColor = 'bg-gray-200';
+                    textColor = 'text-gray-700';
+            }
 
-      return <Tag color={color}>{text}</Tag>;
-    },
-  },
+            return (
+                <span
+                    className={`inline-flex justify-center items-center min-w-[85px] py-[2px] px-[10px] rounded-lg text-xs font-medium ${bgColor} ${textColor}`}
+                >
+                    {status}
+                </span>
+            );
+        },
+    }, 
   {
     title: 'Total Revenue',
     dataIndex: 'revenue',
@@ -110,7 +123,7 @@ const data = [
     key: '3',
     user: 'Kiyawelson@mail.com',
     project: 'Servbook',
-    status: 'Trail',
+    status: 'Trial',
     revenue: '$525.35',
     subscription: 'Yearly',
     expiration: 'in 14 days',
@@ -144,6 +157,7 @@ const data = [
 const RecentPurchaseTable = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [deleteTransactionDrawerOpen, setDeleteTransactionDrawerOpen] = useState(false);
+  const navigate = useNavigate();
 
   const onSelectChange = (newSelectedKeys) => {
     setSelectedRowKeys(newSelectedKeys);
@@ -167,6 +181,11 @@ const RecentPurchaseTable = () => {
     },
   ];
 
+  const handleViewAllBtn = () => {
+    // console.log('View All button clicked');
+    navigate('/purchase-transaction');
+  }
+
   return (
     <div className="bg-white rounded-md shadow-lg border border-[#454B571F] mt-6 p-4">
       <div className="flex justify-between items-center px-4">
@@ -188,7 +207,7 @@ const RecentPurchaseTable = () => {
               </Dropdown>
             </>
           )}
-          <button className="text-sm font-medium text-[#8D94A3] hover:underline cursor-pointer">View All</button>
+          <button className="text-sm font-medium text-[#8D94A3] hover:underline cursor-pointer" onClick={handleViewAllBtn}>View All</button>
         </div>
       </div>
 

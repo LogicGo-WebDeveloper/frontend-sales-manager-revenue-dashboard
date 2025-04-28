@@ -6,7 +6,7 @@ import OpenTicketCard from '../components/open-ticket-card';
 
 const OpenTicket = () => {
     return (
-        <div className="bg-[#F4F5F6] min-h-full px-10 md:px-40 py-6">
+        <div className="">
             {/* Top Header */}
             <div className="flex justify-start items-center flex-wrap gap-4 mb-6">
                 <Link to={ROUTES.DASHBOARD.CONTACT}>

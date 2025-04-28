@@ -15,6 +15,11 @@ export const ROUTES = {
         OVERVIEW: '/overview',
         CONTACT: '/contact-us',
         SETTING: '/setting',
-        OPEN_TICKET: '/ticket'
+        SETTING_PROFILE: '/setting/profile',
+        SETTING_INVOICE: '/setting/invoice',
+        SETTING_PAYMENT: '/setting/payment',
+        OPEN_TICKET: '/ticket',
+        PURCHACE_TRANSACTION: '/purchase-transaction',
+        NEW_LEAD: '/lead',
     }
 }

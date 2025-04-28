@@ -10,33 +10,6 @@ import TicketDrawer from '../components/ticket-drawer.jsx';
 
 const { Option } = Select;
 
-const tickets = [
-  {
-    id: 1,
-    email: 'wilsonbin@mail.com',
-    question: 'How to deposit money to my portal?',
-    description: 'To deposit money into your portal, youll likely need to use a method like online bank transfer, UPI, or a digital wallet, depending on the portals specific payment options.Heres a general guide, but remember to follow the specific instructions provided by the portal you are using:  1. Identify the Portals Payment Methods.Look for a section on "Add Money," "Deposit," or "Payments" that outlines the accepted methods.  ',
-    time: '12:45 PM',
-    date: '26 March, 25',
-  },
-  {
-    id: 2,
-    email: 'wilsonbin@mail.com',
-    question: 'How to deposit money to my portal?',
-    description: 'To deposit money into your portal, youll likely need to use a method like online bank transfer, UPI, or a digital wallet, depending on the portals specific payment options.Heres a general guide, but remember to follow the specific instructions provided by the portal you are using:  1. Identify the Portals Payment Methods.Look for a section on "Add Money," "Deposit," or "Payments" that outlines the accepted methods.  ',
-    time: '12:45 PM',
-    date: '26 March, 25',
-  },
-  {
-    id: 3,
-    email: 'wilsonbin@mail.com',
-    question: 'How to deposit money to my portal?',
-    description: 'To deposit money into your portal, youll likely need to use a method like online bank transfer, UPI, or a digital wallet, depending on the portals specific payment options.Heres a general guide, but remember to follow the specific instructions provided by the portal you are using:  1. Identify the Portals Payment Methods.Look for a section on "Add Money," "Deposit," or "Payments" that outlines the accepted methods.  ',
-    time: '12:45 PM',
-    date: '26 March, 25',
-  },
-];
-
 const ContactUs = () => {
   const [filterValue, setFilterValue] = useState('month');
   const [ticketDrawerOpen, setTicketDrawerOpen] = useState(false)
@@ -48,7 +21,7 @@ const ContactUs = () => {
 
   return (
     <>
-      <div className="bg-[#F4F5F6] min-h-full px-10 md:px-40 py-6">
+      <div className="">
 
         {/* Top Header */}
         <div className="flex justify-between items-start flex-wrap gap-4 mb-6">

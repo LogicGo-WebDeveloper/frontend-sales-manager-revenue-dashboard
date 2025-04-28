@@ -1,0 +1,21 @@
+
+/* Scrollbar container */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Scrollbar track (background) */
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Scrollbar thumb (handle) */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #2363E3;
+    border-radius: 8px;
+}
+
+/* On hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #A0A0A0;
+}

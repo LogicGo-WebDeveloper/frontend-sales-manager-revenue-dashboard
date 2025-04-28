@@ -12,6 +12,7 @@ import SettingIconActive from "../assets/images/setting-icon-active.png";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa6";
 import { TbLogout } from "react-icons/tb";
+import { ROUTES } from '../config/route.const';
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -23,21 +24,21 @@ const Header = () => {
       key: 'overview',
       icon: OverviewIcon,
       iconActive: OverviewIconActive,
-      path: '/overview'
+      path: ROUTES.DASHBOARD.OVERVIEW
     },
     {
       name: 'Contact Us',
       key: 'contact',
       icon: PhoneIcon,
       iconActive: PhoneIconActive,
-      path: '/contact-us'
+      path: ROUTES.DASHBOARD.CONTACT
     },
     {
       name: 'Setting',
       key: 'setting',
       icon: SettingIcon,
       iconActive: SettingIconActive,
-      path: '/setting'
+      path: ROUTES.DASHBOARD.SETTING_PROFILE
     },
   ];
 
@@ -55,7 +56,7 @@ const Header = () => {
 
   const handleProfileDropdownClick = ({ key }) => {
     if (key === 'profile') {
-      navigate('/setting'); 
+      navigate(ROUTES.DASHBOARD.SETTING_PROFILE); 
     } else if (key === 'logout') {
       console.log('Logged out'); 
     }

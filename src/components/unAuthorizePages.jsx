@@ -18,7 +18,7 @@ const UnAuthorizePages = () => {
   return (
     <div>
       {/* <div>Header</div> */}
-      <Header />
+      {/* <Header /> */}
       <Outlet />
       {/* <div>Footer</div> */}
     </div>
