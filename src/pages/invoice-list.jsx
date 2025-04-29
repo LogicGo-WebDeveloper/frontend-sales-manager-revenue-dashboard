@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Table, Input, Button, Dropdown, Menu, Badge, Drawer, Pagination, Select } from 'antd';
+import { Table, Input, Button, Dropdown, Drawer, Pagination, Select } from 'antd';
 import { SearchOutlined, MoreOutlined } from '@ant-design/icons';
 import { IoEyeOutline, IoFilter } from "react-icons/io5";
 import { HiOutlineTrash } from "react-icons/hi";
-import DeleteDrawer from './delete-drawer';
+import DeleteDrawer from '../components/delete-drawer';
 import DeleteInvoiceImage from '../assets/images/delete-invoice-image.png';
-import SecondryButton from './common/secondry.button';
-import InvoiceFilterDrawer from './invoice-filter-drawer';
-import { DownOutlined } from '@ant-design/icons';
+import SecondryButton from '../components/common/secondry.button';
+import { IoIosArrowDown } from "react-icons/io";
+import FilterDrawer from '../components/overview-filter-drawer';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../config/route.const';
 
 const Invoice = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -15,6 +17,7 @@ const Invoice = () => {
   const [filterDrawer, setFilterDrawer] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const navigate = useNavigate();
 
   const data = Array.from({ length: 12 }, (_, index) => ({
     key: index,
@@ -67,7 +70,7 @@ const Invoice = () => {
               {
                 key: '1',
                 label: (
-                  <div className='flex items-center gap-2 p-1' >
+                  <div className='flex items-center gap-2 p-1' onClick={handleViewInvoice}>
                     <IoEyeOutline size={18} color='#2363E3' /> View Invoice
                   </div>
                 )
@@ -95,6 +98,10 @@ const Invoice = () => {
     selectedRowKeys,
     onChange: (selectedKeys) => setSelectedRowKeys(selectedKeys),
   };
+
+  const handleViewInvoice = () => {
+    navigate(ROUTES.DASHBOARD.SETTING_INVOICE);
+  }
 
   return (
     <div className="p-6">
@@ -140,7 +147,7 @@ const Invoice = () => {
         rowSelection={rowSelection}
         columns={columns}
         dataSource={data}
-        
+
         scroll={{ x: 500, y: 290 }}
         className="custom-ant-table"
         bordered
@@ -195,7 +202,7 @@ const Invoice = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    Action <DownOutlined />
+                    Action <IoIosArrowDown />
                   </Button>
                 </Dropdown>
               </div>
@@ -236,7 +243,11 @@ const Invoice = () => {
         width={600}
         closable={false}
       >
-        <InvoiceFilterDrawer onClose={() => setFilterDrawer(false)} />
+        <FilterDrawer
+          onClose={() => setFilterDrawer(false)}
+          onApply={(values) => console.log('Filtered:', values)}
+          panelsToShow={['invoice', 'amount', 'status']}
+        />
       </Drawer>
     </div>
   );

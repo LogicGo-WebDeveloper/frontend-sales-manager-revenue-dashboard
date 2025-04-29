@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { HiOutlineDotsVertical, HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi";
-import PrimaryButton from './common/primary.button';
+import PrimaryButton from '../components/common/primary.button';
 import { FaPlus } from 'react-icons/fa';
 import { Dropdown, Menu, Drawer, Form } from 'antd';
-import AddBankAccountDrawer from './add-bank-account-drawer';
-import DeleteDrawer from './delete-drawer';
+import AddBankAccountDrawer from '../components/add-bank-account-drawer';
+import DeleteDrawer from '../components/delete-drawer';
 import LogoutImage from '../assets/images/logout-image.png';
 
 const accounts = [
@@ -29,6 +29,7 @@ const accounts = [
 ];
 
 const PaymentMethod = () => {
+    
     const [addAccountDrawer, setAddAccountDrawer] = useState(false);
     const [editingAccount, setEditingAccount] = useState(null);
     const [deleteAccountDrawer, setDeleteAccountDrawer] = useState(false);

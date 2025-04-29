@@ -52,7 +52,7 @@ const Overview = () => {
               Generate Promocode
             </PrimaryButton>
 
-            <button onClick={() => setFilterDrawerOpen(true)} className="flex items-center gap-2 border border-[#E0E4EC] px-4 py-2 text-sm font-medium text-[#122751] rounded-md hover:bg-gray-100 transition cursor-pointer">
+            <button onClick={() => setFilterDrawerOpen(true)} className="flex bg-[#FFFFFF] items-center gap-2 border border-[#E0E4EC] px-4 py-2 text-sm font-medium text-[#122751] rounded-md hover:bg-gray-100 transition cursor-pointer">
               <FiFilter className="text-base" />
               Filter
             </button>
@@ -104,7 +104,11 @@ const Overview = () => {
           open={isFilterDrawerOpen}
           width={400}
         >
-          <FilterDrawer onClose={() => setFilterDrawerOpen(false)} panelsToShow={['date', 'platform', 'project',]}/>
+          <FilterDrawer
+          onClose={() => setFilterDrawerOpen(false)}
+          onApply={(values) => console.log('Filtered:', values)}
+          panelsToShow={['date', 'platform', 'project']}
+        />
         </Drawer>
 
       </div>

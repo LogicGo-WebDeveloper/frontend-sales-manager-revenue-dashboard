@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { HiArrowNarrowLeft, HiOutlineTrash } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import { ROUTES } from '../config/route.const'
-import { Drawer, Input, Table, Button, Menu, Dropdown } from 'antd'
-import { DownOutlined, SearchOutlined } from '@ant-design/icons'
+import { Drawer, Input, Button,Dropdown } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
+import { IoIosArrowDown } from "react-icons/io";
 import { IoEyeOutline, IoFilter } from 'react-icons/io5'
 import SecondryButton from '../components/common/secondry.button'
 import PurchaseTransactionTable from '../components/purchase-transaction-table'
@@ -47,7 +48,7 @@ const PurchaseTransaction = () => {
     return (
         <div className="">
             {/* Top Header */}
-            <div className="flex flex-wrap justify-between gap-4 mb-6">
+            <div className="flex flex-wrap justify-between gap-4 mb-3">
                 <div className="flex items-center gap-4">
                     <Link to={ROUTES.DASHBOARD.OVERVIEW}>
                         <HiArrowNarrowLeft size={25} color="#122751" className="cursor-pointer" />
@@ -80,7 +81,7 @@ const PurchaseTransaction = () => {
                                     borderRadius: "10px",
                                 }}
                             >
-                                Action <DownOutlined />
+                                Action <IoIosArrowDown />
                             </Button>
                         </Dropdown>
                     </div>
@@ -110,7 +111,11 @@ const PurchaseTransaction = () => {
                 width={600}
                 closable={false}
             >
-                <FilterDrawer onClose={() => setFilterDrawer(false)} panelsToShow={['date', 'platform', 'project', 'expiration', 'trial', 'sort']} />
+                <FilterDrawer
+                    onClose={() => setFilterDrawer(false)}
+                    onApply={(values) => console.log('Filtered:', values)}
+                    panelsToShow={['date', 'platform', 'project', 'expiration', 'trial', 'sort']}
+                />
             </Drawer>
 
             {/* Delete Transaction Drawer */}

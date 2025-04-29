@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'antd';
-import { LogoutOutlined } from '@ant-design/icons';
 import authIcon from '../assets/images/auth-icon.png';
 import ProfilePic from '../assets/images/profile-icon.png';
 import OverviewIconActive from "../assets/images/overview-icon-active.png";
@@ -17,6 +16,7 @@ import { ROUTES } from '../config/route.const';
 const Header = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const navigate = useNavigate();
+  const location = useLocation();
 
   const tabs = [
     {
@@ -43,7 +43,12 @@ const Header = () => {
   ];
 
   useEffect(() => {
-    const currentTab = tabs.find(tab => location.pathname.startsWith(tab.path));
+    const currentTab = tabs.find(tab => {
+      if (tab.key === 'overview') {
+        return location.pathname === tab.path;
+      }
+      return location.pathname.startsWith(tab.path);
+    });
     if (currentTab) {
       setActiveTab(currentTab.key);
     }

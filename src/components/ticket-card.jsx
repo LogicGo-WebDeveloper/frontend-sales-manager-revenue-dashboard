@@ -69,8 +69,6 @@ const tickets = [
     },
 ];
 
-
-
 const TicketComponent = () => {
     const [deleteTicketDrawer, setDeleteTicketDrawer] = useState(false)
     const [currentPage, setCurrentPage] = useState(1);
@@ -103,79 +101,57 @@ const TicketComponent = () => {
 
     return (
         <>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex gap-8 pb-2 mb-4 text-[#2363E3]">
+            <div className="bg-white p-6 rounded-lg shadow-md flex flex-col h-[76vh]">
+                {/* Sticky Tabs */}
+                <div className="sticky top-0 z-10 bg-white flex gap-8 pb-2 mb-4 text-[#2363E3]">
                     <p className="font-semibold cursor-pointer border-b-2 border-[#2363E3]">All Ticket</p>
                     <p className="text-[#8D94A3] cursor-pointer">Recent Ticket</p>
                     <p className="text-[#8D94A3] cursor-pointer">Resolved Ticket</p>
                 </div>
 
-                {paginatedTickets.map((ticket) => (
-                    <div key={ticket.id} className="p-4 border-[#8d94a33f] border-1 rounded-lg mb-4">
-                        <div className="flex justify-between items-start">
-                            {/* Profile Image */}
-                            <img src={profileImage} alt="" className="w-8 h-8 mt-1" />
+                {/* Scrollable Ticket List */}
+                <div className="flex-1 overflow-y-auto pr-2">
+                    {paginatedTickets.map((ticket) => (
+                        <div key={ticket.id} className="p-4 border-[#8d94a33f] border-1 rounded-lg mb-4">
+                            <div className="flex justify-between items-start">
+                                {/* Profile Image */}
+                                <img src={profileImage} alt="" className="w-8 h-8 mt-1" />
 
-                            {/* Email, Question, Description */}
-                            <div className="flex-1 ml-3 mt-2 pr-6 border-b border-[#8d94a325] pb-2">
-                                <p className="font-semibold text-[#122751]">{ticket.email}</p>
-                                <p className="font-medium text-[#122751] text-sm mt-2">{ticket.question}</p>
-                                <p className="text-[#8D94A3] text-xs font-medium mt-1">{ticket.description}</p>
+                                {/* Email, Question, Description */}
+                                <div className="flex-1 ml-3 mt-2 pr-6 border-b border-[#8d94a325] pb-2">
+                                    <p className="font-semibold text-[#122751]">{ticket.email}</p>
+                                    <p className="font-medium text-[#122751] text-sm mt-2">{ticket.question}</p>
+                                    <p className="text-[#8D94A3] text-xs font-medium mt-1">{ticket.description}</p>
+                                </div>
+
+                                {/* Date and 3 Dot Icon */}
+                                <div className="flex gap-3 min-w-fit">
+                                    <p className="text-[#122751] text-sm">{ticket.date}</p>
+
+                                    <Dropdown
+                                        placement="bottomRight"
+                                        menu={{ items: getMenuItems(ticket.id), style: { border: "1px solid #DCDFEA" } }}
+                                        trigger={['click']}
+                                    >
+                                        <BsThreeDotsVertical className="text-[#122751] cursor-pointer font-bold " />
+                                    </Dropdown>
+
+                                </div>
                             </div>
 
-                            {/* Date and 3 Dot Icon */}
-                            <div className="flex gap-3 min-w-fit">
-                                <p className="text-[#122751] text-sm">{ticket.date}</p>
-                                {/* <Dropdown
-                                    placement="bottomRight"
-                                    menu={
-                                        <Menu
-                                            style={{ border: "1px solid #DCDFEA" }}
-                                            items={[
-                                                {
-                                                    key: 'delete',
-                                                    label: (
-                                                        <div
-                                                            className="flex items-center gap-2 text-[#122751]"
-                                                            onClick={() => handleTicketDelete(ticket.id)}
-                                                        >
-                                                            <FaRegTrashAlt color='#2363E3' />
-                                                            <span>Delete Ticket</span>
-                                                        </div>
-                                                    ),
-                                                },
-                                            ]}
-                                        />
-                                    }
-                                    trigger={['click']}
-                                >
-                                    <BsThreeDotsVertical className="text-[#122751] cursor-pointer font-bold " />
-                                </Dropdown> */}
-
-                                <Dropdown
-                                    placement="bottomRight"
-                                    overlay={<Menu style={{ border: "1px solid #DCDFEA" }} items={getMenuItems(ticket.id)} />}
-                                    trigger={['click']}
-                                >
-                                    <BsThreeDotsVertical className="text-[#122751] cursor-pointer font-bold " />
-                                </Dropdown>
-
-
-
+                            {/* Posted at & Open Button */}
+                            <div className="mt-3 flex justify-between pl-11">
+                                <p className="text-[#122751] text-xs">Posted at {ticket.time}</p>
+                                <Link to={ROUTES.DASHBOARD.OPEN_TICKET} className="text-[#2363E3] font-semibold text-xs underline cursor-pointer">
+                                    Open Ticket
+                                </Link>
                             </div>
                         </div>
+                    ))}
+                </div>
 
-                        {/* Posted at & Open Button */}
-                        <div className="mt-3 flex justify-between pl-11">
-                            <p className="text-[#122751] text-xs">Posted at {ticket.time}</p>
-                            <Link to={ROUTES.DASHBOARD.OPEN_TICKET} className="text-[#2363E3] font-semibold text-xs underline cursor-pointer">
-                                Open Ticket
-                            </Link>
-                        </div>
-                    </div>
-                ))}
-
-                <div className="flex justify-end mt-4">
+                {/* Sticky Pagination */}
+                <div className="sticky bottom-0 z-10 bg-white  flex justify-end pt-2">
                     <Pagination
                         current={currentPage}
                         pageSize={pageSize}

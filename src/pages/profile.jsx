@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Input, Avatar, Drawer } from 'antd';
-import PrimaryButton from './common/primary.button';
-import SecondryButton from './common/secondry.button';
+import PrimaryButton from '../components/common/primary.button';
+import SecondryButton from '../components/common/secondry.button';
 import profileImage from "../assets/images/profile-icon.png";
-import DeleteDrawer from './delete-drawer';
+import DeleteDrawer from '../components/delete-drawer';
 import DeleteProfileImage from '../assets/images/delete-profile-image.png';
 import LogoutImage from '../assets/images/logout-image.png';
 

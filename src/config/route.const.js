@@ -3,7 +3,7 @@ export const ROUTES = {
         HOME : '/admin'
     },
     USER: {
-        HOME: '/',
+        // HOME: '/',
         LOGIN: '/login',
         SIGNUP: '/signup',
         VERIFY_OTP: '/verify-otp',
@@ -12,14 +12,19 @@ export const ROUTES = {
         SUCCESS: '/success'
     },
     DASHBOARD: {
-        OVERVIEW: '/overview',
+        OVERVIEW: '/',
         CONTACT: '/contact-us',
         SETTING: '/setting',
         SETTING_PROFILE: '/setting/profile',
+        SETTING_INVOICE_LIST: '/setting/invoice-list',
         SETTING_INVOICE: '/setting/invoice',
         SETTING_PAYMENT: '/setting/payment',
         OPEN_TICKET: '/ticket',
         PURCHACE_TRANSACTION: '/purchase-transaction',
         NEW_LEAD: '/lead',
+    },
+    ERROR: {
+        PAGE_NOT_FOUND: '*',
+        SERVER_ERROR: '/server-error'
     }
 }

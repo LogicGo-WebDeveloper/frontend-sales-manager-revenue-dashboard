@@ -14,8 +14,13 @@ const Setting = () => {
     return location.pathname === path || location.pathname.startsWith(path);
   };
 
+  const isBillingTabActive =
+    isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE_LIST) ||
+    isActiveTab(ROUTES.DASHBOARD.SETTING_PAYMENT) ||
+    isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE);
+
   return (
-    <div className="">
+    <div>
       {/* Top Header */}
       <div className="flex items-center gap-4 mb-6">
         <HiArrowNarrowLeft 
@@ -33,9 +38,9 @@ const Setting = () => {
       </div>
 
       {/* Main Card */}
-      <div className="bg-white rounded-lg shadow-sm flex min-h-full overflow-hidden">
+      <div className="flex min-h-full gap-x-4">
         {/* Sidebar */}
-        <div className="border-r border-gray-200 w-64 p-6">
+        <div className="bg-white rounded-lg shadow-sm border-r border-gray-200 w-64 p-6">
           {/* Main Tabs */}
           <div className="flex flex-col gap-4">
             <Link
@@ -47,23 +52,29 @@ const Setting = () => {
 
             <div>
               <Link
-                to={ROUTES.DASHBOARD.SETTING_INVOICE}
-                className={`cursor-pointer text-[15px] font-medium flex items-center ${isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE) || isActiveTab(ROUTES.DASHBOARD.SETTING_PAYMENT) ? 'text-[#2363E3]' : 'text-[#8D94A3]'}`}
+                to={ROUTES.DASHBOARD.SETTING_INVOICE_LIST}
+                className={`cursor-pointer text-[15px] font-medium flex items-center ${isBillingTabActive ? 'text-[#2363E3]' : 'text-[#8D94A3]'}`}
               >
-                Billing Details {isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE) || isActiveTab(ROUTES.DASHBOARD.SETTING_PAYMENT) ? 
-                  <IoIosArrowDown className="ml-1 text-[#2363E3]" size={18} /> : 
+                Billing Details
+                {isBillingTabActive ? (
+                  <IoIosArrowDown className="ml-1 text-[#2363E3]" size={18} />
+                ) : (
                   <RiArrowRightSLine className="text-[#8D94A3]" size={21} />
-                }
+                )}
               </Link>
 
               {/* Subtabs inside Billing Details */}
-              {(isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE) || isActiveTab(ROUTES.DASHBOARD.SETTING_PAYMENT)) && (
+              {isBillingTabActive && (
                 <div className="ml-2 mt-3 flex flex-col gap-2">
                   <ul className="text-[#8D94A3] text-sm list-disc pl-5">
                     <li>
                       <Link
-                        to={ROUTES.DASHBOARD.SETTING_INVOICE}
-                        className={`text-[15px] cursor-pointer py-1 rounded-md block ${isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE) ? 'text-[#122751] font-normal' : 'text-[#8D94A3]'}`}
+                        to={ROUTES.DASHBOARD.SETTING_INVOICE_LIST}
+                        className={`text-[15px] cursor-pointer py-1 rounded-md block ${
+                          isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE_LIST) || isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE)
+                            ? 'text-[#122751] font-normal'
+                            : 'text-[#8D94A3]'
+                        }`}
                       >
                         Invoice
                       </Link>
@@ -71,7 +82,11 @@ const Setting = () => {
                     <li>
                       <Link
                         to={ROUTES.DASHBOARD.SETTING_PAYMENT}
-                        className={`text-[15px] cursor-pointer py-1 rounded-md block ${isActiveTab(ROUTES.DASHBOARD.SETTING_PAYMENT) ? 'text-[#122751] font-normal' : 'text-[#8D94A3]'}`}
+                        className={`text-[15px] cursor-pointer py-1 rounded-md block ${
+                          isActiveTab(ROUTES.DASHBOARD.SETTING_PAYMENT)
+                            ? 'text-[#122751] font-normal'
+                            : 'text-[#8D94A3]'
+                        }`}
                       >
                         Payment Method
                       </Link>
@@ -84,7 +99,7 @@ const Setting = () => {
         </div>
 
         {/* Right Content Area */}
-        <div className="flex-1">
+        <div className="bg-white rounded-lg shadow-sm flex-1">
           <Outlet />
         </div>
       </div>
@@ -92,4 +107,4 @@ const Setting = () => {
   );
 };
 
-export default Setting; 
+export default Setting;

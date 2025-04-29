@@ -20,44 +20,44 @@ const columns = [
     dataIndex: 'project',
     render: (text) => <span className="text-[#122751] font-medium">{text}</span>,
   },
-    {
-        title: 'Status',
-        dataIndex: 'status',
-        render: (status) => {
-            let bgColor = '';
-            let textColor = '';
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    render: (status) => {
+      let bgColor = '';
+      let textColor = '';
 
-            switch (status) {
-                case 'Purchased':
-                    bgColor = 'bg-[#D1FAE5]';
-                    textColor = 'text-[#059669]'; 
-                    break;
-                case 'Trial':
-                    bgColor = 'bg-[#D1F0FA]'; 
-                    textColor = 'text-[#266FDC]'; 
-                    break;
-                case 'Renewals':
-                    bgColor = 'bg-[#FEE2E2]'; 
-                    textColor = 'text-[#DC2626]'; 
-                    break;
-                case 'Lifetime':
-                    bgColor = 'bg-[#FEF3C7]'; 
-                    textColor = 'text-[#954614]'; 
-                    break;
-                default:
-                    bgColor = 'bg-gray-200';
-                    textColor = 'text-gray-700';
-            }
+      switch (status) {
+        case 'Purchased':
+          bgColor = 'bg-[#D1FAE5]';
+          textColor = 'text-[#059669]';
+          break;
+        case 'Trial':
+          bgColor = 'bg-[#D1F0FA]';
+          textColor = 'text-[#266FDC]';
+          break;
+        case 'Renewals':
+          bgColor = 'bg-[#FEE2E2]';
+          textColor = 'text-[#DC2626]';
+          break;
+        case 'Lifetime':
+          bgColor = 'bg-[#FEF3C7]';
+          textColor = 'text-[#954614]';
+          break;
+        default:
+          bgColor = 'bg-gray-200';
+          textColor = 'text-gray-700';
+      }
 
-            return (
-                <span
-                    className={`inline-flex justify-center items-center min-w-[85px] py-[2px] px-[10px] rounded-lg text-xs font-medium ${bgColor} ${textColor}`}
-                >
-                    {status}
-                </span>
-            );
-        },
-    }, 
+      return (
+        <span
+          className={`inline-flex justify-center items-center min-w-[85px] py-[2px] px-[10px] rounded-lg text-xs font-medium ${bgColor} ${textColor}`}
+        >
+          {status}
+        </span>
+      );
+    },
+  },
   {
     title: 'Total Revenue',
     dataIndex: 'revenue',
@@ -201,7 +201,14 @@ const RecentPurchaseTable = () => {
                   onClick: handleMenuClick,
                 }}
               >
-                <Button style={{ color: "#122751", fontWeight: "500", padding: "22px 10px", borderRadius: "10px" }}>
+                <Button
+                  style={{
+                    color: "#122751",
+                    fontWeight: "500",
+                    padding: "18px 10px",
+                    borderRadius: "10px",
+                  }}
+                >
                   Action <IoIosArrowDown />
                 </Button>
               </Dropdown>
@@ -221,7 +228,7 @@ const RecentPurchaseTable = () => {
         dataSource={data}
         pagination={false}
         className="custom-ant-table"
-        scroll={{ x: 'max-content' }}
+        style={{marginTop: "10px"}}
       />
 
       {/* Drawer */}
@@ -233,7 +240,7 @@ const RecentPurchaseTable = () => {
         width={600}
         closable={false}
       >
-        <DeleteDrawer onClose={() => setDeleteTransactionDrawerOpen(false)} image={DeleteTransactionImage} title="Are you sure you want to delete this transaction?" description="Are you certain you want to permanently delete this transaction? This action cannot be undone." primaryButtonText="Delete Transaction"  />
+        <DeleteDrawer onClose={() => setDeleteTransactionDrawerOpen(false)} image={DeleteTransactionImage} title="Are you sure you want to delete this transaction?" description="Are you certain you want to permanently delete this transaction? This action cannot be undone." primaryButtonText="Delete Transaction" />
       </Drawer>
     </div>
   );

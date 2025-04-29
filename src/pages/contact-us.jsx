@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { Drawer, Select } from 'antd';
 import PrimaryButton from '../components/common/primary.button.jsx';
-import { FaEllipsisV } from 'react-icons/fa';
-import { Pagination } from 'antd';
-import profileImage from "../assets/images/profile-icon.png"
 import TicketComponent from '../components/ticket-card.jsx';
 import TicketDrawer from '../components/ticket-drawer.jsx';
 
@@ -21,10 +18,9 @@ const ContactUs = () => {
 
   return (
     <>
-      <div className="">
-
+      <div>
         {/* Top Header */}
-        <div className="flex justify-between items-start flex-wrap gap-4 mb-6">
+        <div className="flex justify-between items-start flex-wrap gap-4 mb-4">
           <div>
             <h1 className="text-xl font-semibold text-[#122751]">Create a Support Ticket</h1>
             <p className="text-sm text-[#8D94A3] mt-1">

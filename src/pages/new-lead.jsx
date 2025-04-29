@@ -179,7 +179,7 @@ const NewLead = () => {
                         columns={columns}
                         pagination={false}
                         className="custom-ant-table"
-                        scroll={{ x: '100%'}}
+                        scroll={{ x: '100%' }}
                     />
                 </div>
 
@@ -192,9 +192,13 @@ const NewLead = () => {
                     closable={false}
                     width={400}
                 >
-                    <FilterDrawer onClose={() => setFilterDrawer(false)} panelsToShow={['date', 'platform', 'project']} />
+                    <FilterDrawer
+                        onClose={() => setFilterDrawer(false)}
+                        onApply={(values) => console.log('Filtered:', values)}
+                        panelsToShow={['date', 'platform', 'project']}
+                    />
                 </Drawer>
-                
+
                 {/* Transaction Details Drawer */}
                 <Drawer
                     title="Filter"

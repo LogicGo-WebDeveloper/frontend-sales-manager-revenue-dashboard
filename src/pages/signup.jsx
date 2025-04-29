@@ -85,13 +85,13 @@ const Signup = () => {
                 {/* Social Buttons */}
                 <div className="flex gap-3 mb-6">
                     <button
-                        className="flex items-center justify-center gap-2 flex-1 border text-[#8D94A3] border-[#E0E5F2] rounded-md px-4 py-2 text-sm font-medium bg-white"
+                        className="cursor-pointer flex items-center justify-center gap-2 flex-1 border text-[#8D94A3] border-[#E0E5F2] rounded-md px-4 py-2 text-sm font-medium bg-white"
                     >
                         <img src={googleIcon} alt="Google" className="w-5 h-5" />
                         Sign in with Google
                     </button>
                     <button
-                        className="flex items-center justify-center gap-2 flex-1 border text-[#8D94A3] border-[#E0E5F2] rounded-md px-4 py-2 text-sm font-medium bg-white"
+                        className="cursor-pointer flex items-center justify-center gap-2 flex-1 border text-[#8D94A3] border-[#E0E5F2] rounded-md px-4 py-2 text-sm font-medium bg-white"
                     >
                         <img src={appleIcon} alt="Apple" className="w-5 h-5" />
                         Sign in with Apple

@@ -89,6 +89,12 @@ export const getValidationRule = (fieldName, isRequired = true) => {
         }
         break;
 
+      case "Project":
+        if (value === "") {
+          return Promise.reject('Please select a project');
+        }
+        break;
+
 
       default:
         // For any other field, just check if required
