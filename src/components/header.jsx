@@ -12,11 +12,15 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa6";
 import { TbLogout } from "react-icons/tb";
 import { ROUTES } from '../config/route.const';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { user, isAuthenticated } = useSelector((state) => state.user);
+
 
   const tabs = [
     {
@@ -63,7 +67,9 @@ const Header = () => {
     if (key === 'profile') {
       navigate(ROUTES.DASHBOARD.SETTING_PROFILE); 
     } else if (key === 'logout') {
-      console.log('Logged out'); 
+      localStorage.removeItem('token');
+      navigate(ROUTES.USER.LOGIN);
+      // console.log('Logged out'); 
     }
   };
 
@@ -119,8 +125,8 @@ const Header = () => {
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-2">
           <div className="text-right">
-            <div className="font-semibold text-sm">Wilson Lubin</div>
-            <div className="text-xs text-[#8D94A3]">wilsondesign@gmail.com</div>
+            <div className="font-semibold text-sm">{user.username}</div>
+            <div className="text-xs text-[#8D94A3]">{user.email}</div>
           </div>
 
           <Dropdown

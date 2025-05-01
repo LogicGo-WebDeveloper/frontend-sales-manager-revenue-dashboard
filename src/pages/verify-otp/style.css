@@ -6,8 +6,8 @@
 }
 
 .otp-input {
-    flex: 1; 
-    max-width: 100px; 
+    flex: 1;
+    max-width: 100px;
     height: 70px;
     text-align: center;
     font-size: 30px;
@@ -22,4 +22,39 @@
 .otp-input:focus {
     border-color: #3b82f6;
     box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+
+.otp-input-group.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-8px);
+    }
+
+    40% {
+        transform: translateX(8px);
+    }
+
+    60% {
+        transform: translateX(-8px);
+    }
+
+    80% {
+        transform: translateX(8px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.otp-input.error {
+    border: 1.5px solid #ff4d4f !important;
 }

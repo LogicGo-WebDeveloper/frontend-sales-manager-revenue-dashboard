@@ -9,7 +9,7 @@ const AuthorizePages = () => {
   const token = localStorage.getItem('token')
 
   if (!token) {
-    return <Navigate to={ROUTES.USER.LOGIN} state={{ from: location }} replace />
+    return <Navigate to={ROUTES.USER.LOGIN} />
   }
 
   return (

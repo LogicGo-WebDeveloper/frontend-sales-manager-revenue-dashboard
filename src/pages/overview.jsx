@@ -13,11 +13,14 @@ import RecentPurchaseTable from '../components/recent-purchase-table.jsx';
 import { Drawer } from 'antd';
 import GeneratePromocodeDrawer from '../components/generate-promocode-drawer.jsx';
 import FilterDrawer from '../components/overview-filter-drawer.jsx';
+import { useSelector } from 'react-redux';
 
 const Overview = () => {
 
   const [isPromoDrawerOpen, setPromoDrawerOpen] = useState(false);
   const [isFilterDrawerOpen, setFilterDrawerOpen] = useState(false);
+
+
 
   return (
     <>

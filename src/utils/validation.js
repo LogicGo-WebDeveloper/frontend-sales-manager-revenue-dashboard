@@ -31,14 +31,14 @@ export const getValidationRule = (fieldName, isRequired = true) => {
     if (!value) return Promise.resolve();
 
     switch (fieldName) {
-      case 'email':
+      case 'Email':
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
           return Promise.reject('Please enter a valid email');
         }
         break;
 
-      case 'password':
+      case 'Password':
         if (value.length < 8) {
           return Promise.reject('Password must be at least 8 characters');
         }
@@ -53,7 +53,7 @@ export const getValidationRule = (fieldName, isRequired = true) => {
         }
         break;
 
-      case 'username':
+      case 'Username':
         if (value.length < 3) {
           return Promise.reject('Username must be at least 3 characters');
         }

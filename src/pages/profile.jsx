@@ -6,11 +6,14 @@ import profileImage from "../assets/images/profile-icon.png";
 import DeleteDrawer from '../components/delete-drawer';
 import DeleteProfileImage from '../assets/images/delete-profile-image.png';
 import LogoutImage from '../assets/images/logout-image.png';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
     const [form] = Form.useForm();
     const [deletePictureDrawer, setDeletePictureDrawer] = useState(false);
     const [logoutDrawer, setLogoutDrawer] = useState(false);
+    const { user } = useSelector((state) => state.user);
+
 
     return (
         <div className="w-full p-8 flex flex-col justify-between min-h-[500px]">
@@ -40,8 +43,8 @@ const Profile = () => {
                     layout="vertical"
                     className="max-w-lg"
                     initialValues={{
-                        username: 'Wilson Lubin',
-                        email: 'wilsonlubin8@gmail.com',
+                        // username: 'Wilson Lubin',
+                        // email: 'wilsonlubin8@gmail.com',
                     }}
                 >
                     {/* User Name Field */}
@@ -50,7 +53,7 @@ const Profile = () => {
                         name="username"
                         rules={[{ required: true, message: 'Please input your username!' }]}
                     >
-                        <Input />
+                        <Input defaultValue={user.username}  />
                     </Form.Item>
 
                     {/* Email Field */}
@@ -59,7 +62,7 @@ const Profile = () => {
                         name="email"
                         rules={[{ required: true, message: 'Please input your email!' }]}
                     >
-                        <Input />
+                        <Input defaultValue={user.email} />
                     </Form.Item>
                 </Form>
             </div>

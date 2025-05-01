@@ -28,6 +28,14 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+/* antd password input */
+.ant-input-affix-wrapper {
+    color: #122751 !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    font-family: "Roboto", sans-serif;
+}
+
 /* ant input placeholder */
 .ant-input::placeholder {
     color: #8D94A3 !important;
@@ -215,3 +223,16 @@ body {
     /* font-weight: 600 !important; */
     background-color: #2363E3 !important;
 }
+
+
+.ant-message-notice-content{
+    background-color: #fff1f0 !important;
+}
+
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

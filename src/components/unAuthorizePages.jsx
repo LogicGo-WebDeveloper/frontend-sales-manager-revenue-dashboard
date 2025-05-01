@@ -15,7 +15,7 @@ const UnAuthorizePages = () => {
   // }
 
   const token = localStorage.getItem('token')
-  console.log('token from authpages', token)
+  // console.log('token from authpages', token)
 
   if (token) {
     return <Navigate to={ROUTES.DASHBOARD.OVERVIEW} />
