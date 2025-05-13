@@ -6,35 +6,37 @@ import { Dropdown, Menu, Drawer, Form } from 'antd';
 import AddBankAccountDrawer from '../components/add-bank-account-drawer';
 import DeleteDrawer from '../components/delete-drawer';
 import LogoutImage from '../assets/images/logout-image.png';
-
-const accounts = [
-    {
-        _id: 1,
-        accountName: 'Wilson Lubin',
-        bankName: 'Bank Negara Indonesia',
-        branchAddress: 'BNI Building, Floor 7, Jalan Jenderal, Sudirman 1',
-        accountNumber: '222333002254888',
-        ifscCode: 'BNI0124VBIS',
-        swiftCode: 'BNI0124VBIS0125',
-    },
-    {
-        _id: 2,
-        accountName: 'John Doe',
-        bankName: 'Bank of America',
-        branchAddress: '123 Main St, New York, NY',
-        accountNumber: '1234567890123456',
-        ifscCode: 'BOFAUS3N',
-        swiftCode: 'BOFAUS3NXXX',
-    },
-];
+import { ROUTE_PATH } from '../config/api-routes.config';
+import CardSkeleton from '../components/common/skeleton';
+import { useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEYS, QUERY_METHODS } from '../config/query.const';
+import { delay } from '../utils/delay';
+import { useFetch, useMutate, useQueryState } from '../hooks/useQuery';
+import Loader from '../components/common/loader';
 
 const PaymentMethod = () => {
-    
+
     const [addAccountDrawer, setAddAccountDrawer] = useState(false);
     const [editingAccount, setEditingAccount] = useState(null);
     const [deleteAccountDrawer, setDeleteAccountDrawer] = useState(false);
+    const [selectedDeleteAccountId, setSelectedDeleteAccountId] = useState(null);
+    const queryClient = useQueryClient();
     const [form] = Form.useForm();
 
+    // Fetch Accounts
+    const query = useFetch(
+        [QUERY_KEYS.PAYMENT_METHOD.LIST],
+        ROUTE_PATH.PAYMENT.LIST,
+        {
+            refetchOnMount: true,
+            refetchOnWindowFocus: false,
+            staleTime: 0,
+            cacheTime: 0,
+        }
+    );
+
+    const { isLoading, isError, data } = useQueryState(query);
+    // console.log(data.body)
 
     const onClickDrawer = () => {
         form.resetFields();
@@ -46,19 +48,50 @@ const PaymentMethod = () => {
         setEditingAccount(account);
         setAddAccountDrawer(true);
         form.setFieldsValue({
-            accountHolderName: account.accountName,
+            accountHolderName: account.accountHolderName,
             bankName: account.bankName,
-            branchAddress: account.branchAddress,
+            bankAddress: account.bankAddress,
             accountNumber: account.accountNumber,
             ifscCode: account.ifscCode,
-            swiftCode: account.swiftCode,
+            swiftBicCode: account.swiftBicCode,
         });
     }
 
+    // Delete account Mutation
+    const { mutate: deleteAccountMutation, isPending } = useMutate(
+        QUERY_KEYS.PAYMENT_METHOD.DELETE,
+        QUERY_METHODS.DELETE,
+        `${ROUTE_PATH.PAYMENT.DELETE}/${selectedDeleteAccountId}`,
+        {
+            onSuccess: async () => {
+                queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PAYMENT_METHOD.LIST] });
+                await delay(1000)
+                messageApi.open({ type: 'success', content: 'Account deleted successfully!', duration: 2 });
+                setDeleteAccountDrawer(false);
+                setSelectedDeleteAccountId(null);
+            },
+            onError: (error) => {
+                console.error("Error deleting account:", error);
+                setDeleteAccountDrawer(false);
+                messageApi.open({
+                    type: 'error',
+                    content: error.response?.data?.message || 'Failed to delete account. Please try again.',
+                });
+                setSelectedDeleteAccountId(null);
+            }
+        }
+    )
+
     // Delete account
     const handleDeleteAccount = (account) => {
-        console.log("Delete account:", account._id);
         setDeleteAccountDrawer(true);
+        setSelectedDeleteAccountId(account._id);
+    }
+
+    const handleDeleteConfirm = () => {
+        if (selectedDeleteAccountId) {
+            deleteAccountMutation();
+        }
     }
 
     const getDropdownMenu = (account) => ({
@@ -90,7 +123,13 @@ const PaymentMethod = () => {
         ],
     });
 
-
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-[calc(90vh-100px)]">
+                <Loader />
+            </div>
+        );
+    }
 
     return (
         <div className="p-6">
@@ -110,7 +149,7 @@ const PaymentMethod = () => {
                 <h3 className="text-sm font-medium mb-4">Bank Accounts</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
-                    {accounts.map((account, index) => (
+                    {data?.body?.map((account, index) => (
                         <div
                             key={index}
                             className="bg-white rounded-md border border-[#DCDFEA] p-6 w-full max-w-md relative"
@@ -125,13 +164,13 @@ const PaymentMethod = () => {
                             {/* Bank Details */}
                             <div className="space-y-3 text-sm">
                                 <div>
-                                    <span className="text-[#8D94A3]">Account Name : </span> {account.accountName}
+                                    <span className="text-[#8D94A3]">Account Name : </span> {account.accountHolderName}
                                 </div>
                                 <div>
                                     <span className="text-[#8D94A3]">Bank Name : </span> {account.bankName}
                                 </div>
                                 <div>
-                                    <span className="text-[#8D94A3]">Branch Address : </span> {account.branchAddress}
+                                    <span className="text-[#8D94A3]">Branch Address : </span> {account.bankAddress}
                                 </div>
                                 <div>
                                     <span className="text-[#8D94A3]">Account Number : </span> {account.accountNumber}
@@ -140,7 +179,7 @@ const PaymentMethod = () => {
                                     <span className="text-[#8D94A3]">IFSC Code : </span> {account.ifscCode}
                                 </div>
                                 <div>
-                                    <span className="text-[#8D94A3]">SWIFT/BIC Code : </span> {account.swiftCode}
+                                    <span className="text-[#8D94A3]">SWIFT/BIC Code : </span> {account.swiftBicCode}
                                 </div>
                             </div>
                         </div>
@@ -177,7 +216,12 @@ const PaymentMethod = () => {
                 width={600}
                 closable={false}
             >
-                <DeleteDrawer onClose={() => setDeleteAccountDrawer(false)} image={LogoutImage} title="Are you sure you want to Delete this Account?" description="Are you certain you want to Delete Account? This action cannot be undone." primaryButtonText="Delete Account" />
+                <DeleteDrawer
+                    onClose={() => setDeleteAccountDrawer(false)}
+                    onDelete={handleDeleteConfirm}
+                    image={LogoutImage}
+                    title="Are you sure you want to Delete this Account?"
+                    description="Are you certain you want to Delete Account? This action cannot be undone." primaryButtonText="Delete Account" />
             </Drawer>
         </div>
     );

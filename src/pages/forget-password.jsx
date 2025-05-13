@@ -5,11 +5,12 @@ import { getValidationRule } from '../utils/validation';
 import PrimaryButton from '../components/common/primary.button';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../config/route.const';
-import { ROUTE_PATH } from '../config/routes.config';
+import { ROUTE_PATH } from '../config/api-routes.config';
 import { useMutate } from '../hooks/useQuery';
 import Loader from '../components/common/Loader';
 import { delay } from '../utils/delay';
 import LoadingButton from '../components/common/loading-button';
+import { QUERY_KEYS, QUERY_METHODS } from '../config/query.const';
 
 const ForgetPassword = () => {
     const [form] = Form.useForm();
@@ -18,7 +19,7 @@ const ForgetPassword = () => {
     const [showLoader, setShowLoader] = useState(false);
 
     // Mutation for password reset
-    const { mutate: resetPasswordMutation, isLoading } = useMutate('auth.forgotPassword', 'post', ROUTE_PATH.AUTH.FORGOT_PASSWORD, {
+    const { mutate: resetPasswordMutation, isLoading } = useMutate(QUERY_KEYS.AUTH.FORGOT_PASSWORD, QUERY_METHODS.POST, ROUTE_PATH.AUTH.FORGOT_PASSWORD, {
         onSuccess: async (data) => {
             await delay(1000);
             setShowLoader(false);

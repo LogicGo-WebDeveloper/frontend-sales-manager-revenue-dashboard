@@ -4,7 +4,7 @@ import api from '../config/api.config';
 // Custom hook for GET requests
 export const useFetch = (key, url, options = {}) => {
   return useQuery({
-    queryKey: [key],
+    queryKey: Array.isArray(key) ? key : [key],
     queryFn: async () => {
       const { data } = await api.get(url);
       return data;
@@ -18,13 +18,17 @@ export const useMutate = (key, method, url, options = {}) => {
   const queryClient = useQueryClient();
 
   return useMutation({
+    mutationKey: Array.isArray(key) ? key : [key], 
     mutationFn: async (payload) => {
       const { data } = await api[method](url, payload);
       return data;
     },
-    onSuccess: () => {
+    onSuccess: (data, variables, context) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: [key] });
+      queryClient.invalidateQueries({ queryKey: Array.isArray(key) ? key : [key] });
+      if (options.onSuccess) {
+        options.onSuccess(data, variables, context);
+      }
     },
     ...options,
   });

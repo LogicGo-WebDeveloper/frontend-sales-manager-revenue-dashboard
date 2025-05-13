@@ -19,9 +19,11 @@ export const ROUTES = {
         SETTING_INVOICE_LIST: '/setting/invoice-list',
         SETTING_INVOICE: '/setting/invoice',
         SETTING_PAYMENT: '/setting/payment',
-        OPEN_TICKET: '/ticket',
+        OPEN_TICKET: '/ticket/:ticketId',
         PURCHACE_TRANSACTION: '/purchase-transaction',
         NEW_LEAD: '/lead',
+        RECENT_TICKETS: '/contact-us/recent-tickets',
+        RESOLVED_TICKETS: '/contact-us/resolved-tickets'
     },
     ERROR: {
         PAGE_NOT_FOUND: '*',

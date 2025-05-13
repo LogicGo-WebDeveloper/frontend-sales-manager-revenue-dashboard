@@ -4,12 +4,13 @@ import AuthLayout from "../../components/auth-layout";
 import PrimaryButton from "../../components/common/primary.button";
 import "../verify-otp/style.css";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { ROUTE_PATH } from "../../config/routes.config";
+import { ROUTE_PATH } from "../../config/api-routes.config";
 import { useMutate } from "../../hooks/useQuery";
 import Loader from "../../components/common/Loader";
 import { ROUTES } from "../../config/route.const";
 import LoadingButton from "../../components/common/loading-button";
 import { delay } from "../../utils/delay";
+import { QUERY_KEYS, QUERY_METHODS } from "../../config/query.const";
 
 const VerifyOtp = () => {
     const location = useLocation();
@@ -27,7 +28,7 @@ const VerifyOtp = () => {
     const [showLoader, setShowLoader] = useState(false);
 
 
-    const { mutate: verifyOtpMutation, isLoading } = useMutate('auth.verifyOtp', 'post', ROUTE_PATH.AUTH.VERIFY_EMAIL_OTP,
+    const { mutate: verifyOtpMutation, isLoading } = useMutate(QUERY_KEYS.AUTH.VERIFY_EMAIL_OTP, QUERY_METHODS.POST, ROUTE_PATH.AUTH.VERIFY_EMAIL_OTP,
         {
             onSuccess: async (data) => {
                 await delay(1000);
@@ -56,7 +57,7 @@ const VerifyOtp = () => {
     );
 
     // resend otp mutation
-    const { mutate: resendOtpMutation } = useMutate('auth', 'post', ROUTE_PATH.AUTH.RESEND_EMAIL_OTP, {
+    const { mutate: resendOtpMutation } = useMutate(QUERY_KEYS.AUTH.RESEND_EMAIL_OTP, QUERY_METHODS.POST, ROUTE_PATH.AUTH.RESEND_EMAIL_OTP, {
         onSuccess: (data) => {
             messageApi.open({
                 type: 'success',

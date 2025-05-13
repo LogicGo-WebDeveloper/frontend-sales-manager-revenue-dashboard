@@ -7,10 +7,11 @@ import PrimaryButton from '../components/common/primary.button';
 import googleIcon from '../assets/images/google-icon.png';
 import appleIcon from '../assets/images/apple-icon.png';
 import { ROUTES } from '../config/route.const';
-import { ROUTE_PATH } from '../config/routes.config';
+import { ROUTE_PATH } from '../config/api-routes.config';
 import { useMutate } from '../hooks/useQuery';
 import LoadingButton from '../components/common/loading-button';
 import { delay } from '../utils/delay';
+import { QUERY_KEYS, QUERY_METHODS } from '../config/query.const';
 
 const Signup = () => {
     const [form] = Form.useForm();
@@ -18,7 +19,7 @@ const Signup = () => {
     const [messageApi, contextHolder] = antdMessage.useMessage();
     const [showLoader, setShowLoader] = useState(false);
 
-    const { mutate: signupMutation, isPending } = useMutate('auth.signup', 'post', ROUTE_PATH.AUTH.SIGNUP, {
+    const { mutate: signupMutation, isPending } = useMutate(QUERY_KEYS.AUTH.SIGNUP, QUERY_METHODS.POST, ROUTE_PATH.AUTH.SIGNUP, {
         onSuccess: async (data) => {
 
             await delay(1000);

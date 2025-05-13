@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Dropdown } from 'antd';
+import { Avatar, Dropdown } from 'antd';
 import authIcon from '../assets/images/auth-icon.png';
-import ProfilePic from '../assets/images/profile-icon.png';
+import profileImage from '../assets/images/profile-icon.png';
 import OverviewIconActive from "../assets/images/overview-icon-active.png";
 import OverviewIcon from "../assets/images/overview-icon.png";
 import PhoneIcon from "../assets/images/phone-icon.png";
@@ -47,16 +47,30 @@ const Header = () => {
   ];
 
   useEffect(() => {
+    // Check for ticket route
+    if (location.pathname.startsWith('/ticket')) {
+      setActiveTab('contact');
+      return;
+    }
+    
+    // Check for setting route
+    if (location.pathname.startsWith('/setting')) {
+      setActiveTab('setting');
+      return;
+    }
+
     const currentTab = tabs.find(tab => {
       if (tab.key === 'overview') {
         return location.pathname === tab.path;
       }
       return location.pathname.startsWith(tab.path);
     });
+
     if (currentTab) {
       setActiveTab(currentTab.key);
     }
-  }, [location.pathname]); 
+  }, [location.pathname]);
+
 
   const handleTabClick = (key, path) => {
     setActiveTab(key);
@@ -65,7 +79,7 @@ const Header = () => {
 
   const handleProfileDropdownClick = ({ key }) => {
     if (key === 'profile') {
-      navigate(ROUTES.DASHBOARD.SETTING_PROFILE); 
+      navigate(ROUTES.DASHBOARD.SETTING_PROFILE);
     } else if (key === 'logout') {
       localStorage.removeItem('token');
       navigate(ROUTES.USER.LOGIN);
@@ -132,15 +146,20 @@ const Header = () => {
           <Dropdown
             menu={{
               items,
-              onClick: handleProfileDropdownClick, 
+              onClick: handleProfileDropdownClick,
             }}
             trigger={['click']}
             placement="bottomRight"
           >
-            <img
+            {/* <img
               src={ProfilePic}
               alt="profile"
               className="w-8 h-8 rounded-full object-cover cursor-pointer"
+            /> */}
+            <Avatar
+              size={40}
+              src={user.profileImage || profileImage}
+              className="cursor-pointer"
             />
           </Dropdown>
         </div>

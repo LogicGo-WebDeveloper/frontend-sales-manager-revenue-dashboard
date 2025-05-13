@@ -52,6 +52,8 @@ function App() {
             <Route path={ROUTES.DASHBOARD.SETTING_PAYMENT} element={<SettingPayment />} />
           </Route>
           <Route path={ROUTES.DASHBOARD.CONTACT} element={<ContactUs />} />
+          <Route path={ROUTES.DASHBOARD.RECENT_TICKETS} element={<ContactUs />} />
+          <Route path={ROUTES.DASHBOARD.RESOLVED_TICKETS} element={<ContactUs />} />
           <Route path={ROUTES.DASHBOARD.OPEN_TICKET} element={<OpenTicket />} />
           <Route path={ROUTES.DASHBOARD.PURCHACE_TRANSACTION} element={<PurchaseTransaction />} />
           <Route path={ROUTES.DASHBOARD.NEW_LEAD} element={<NewLead />} />

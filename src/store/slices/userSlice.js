@@ -10,7 +10,6 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            console.log('Setting user in Redux:', action.payload);
             state.user = action.payload;
             state.isAuthenticated = true;
         },

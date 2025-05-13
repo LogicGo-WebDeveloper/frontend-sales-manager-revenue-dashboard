@@ -2,9 +2,9 @@ import React from 'react';
 import DeleteTransactionImage from '../assets/images/delete-transaction-image.png';
 import SecondryButton from './common/secondry.button';
 import PrimaryButton from './common/primary.button';
+import LoadingButton from './common/loading-button';
 
-
-const DeleteDrawer = ({ onClose, onDelete , image, title , description , primaryButtonText }) => {
+const DeleteDrawer = ({ onClose, image, title, description, primaryButtonText, onDelete, loading }) => {
   return (
     <div className="flex flex-col h-full justify-between">
       {/* Content */}
@@ -33,14 +33,20 @@ const DeleteDrawer = ({ onClose, onDelete , image, title , description , primary
 
       {/* Footer Buttons */}
       <div className="flex justify-end gap-3 px-6 py-4 bg-white">
-        <SecondryButton 
-          style={{width: "80px", height: "40px", color: "#122751" , fontWeight: "600"}}
+        <SecondryButton
+          style={{ width: "80px", height: "40px", color: "#122751", fontWeight: "600" }}
           onClick={onClose} >
           Cancel
         </SecondryButton>
-        <PrimaryButton style={{width: "192px", height: "40px"}}>
-          {primaryButtonText}
+
+        <PrimaryButton
+          onClick={onDelete}
+          style={{ width: "192px", height: "40px" }}
+          disabled={loading}
+        >
+          {loading ? <LoadingButton size="small" /> : primaryButtonText}
         </PrimaryButton>
+
       </div>
     </div>
   );

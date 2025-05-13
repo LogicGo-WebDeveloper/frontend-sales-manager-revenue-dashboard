@@ -1,31 +1,79 @@
 import React, { useState } from 'react';
-import { Drawer, Form, Input, Button, Select, DatePicker, TimePicker } from 'antd';
+import { Form, Input, Button, Select, DatePicker, TimePicker, message as antdMessage } from 'antd';
 import PrimaryButton from './common/primary.button';
 import { getValidationRule } from '../utils/validation';
 import { SearchOutlined } from '@ant-design/icons';
+import dayjs from 'dayjs';
+import { ROUTE_PATH } from '../config/api-routes.config';
+import { useMutate } from '../hooks/useQuery';
+import LoadingButton from './common/loading-button';
+import { delay } from '../utils/delay';
+import { QUERY_KEYS, QUERY_METHODS } from '../config/query.const';
+
 const { Option } = Select;
 const GeneratePromoCodeDrawer = ({ onClose }) => {
     const [form] = Form.useForm();
+    const [messageApi, contextHolder] = antdMessage.useMessage();
+
+    const { mutate: createPromocodeMutation, isPending } = useMutate(QUERY_KEYS.PROMOCODE.CREATE, QUERY_METHODS.POST, ROUTE_PATH.PROMOCODE.CREATE, {
+        onSuccess: async (data) => {
+            await delay(1000);
+            messageApi.open({ type: 'success', content: 'Promocode created successfully', duration: 2 });
+            form.resetFields();
+            onClose();
+        },
+        onError: async (error) => {
+            console.log('Error while creating promocode: ', error);
+            messageApi.open({
+                type: 'error',
+                content: error.response?.data?.message || 'Login failed. Please try again.',
+                duration: 2,
+            });
+        }
+    })
 
     const onFinish = (values) => {
-        console.log('Form Submitted:', values);
+        const { startDate, startTime, endDate, endTime, limit, ...rest } = values;
+
+        // Format values
+        const formattedStartDate = dayjs(startDate).toISOString();
+        const formattedStartTime = dayjs(startTime).format('h:mm A');
+        const formattedEndDate = dayjs(endDate).format('YYYY-MM-DD');
+        const formattedEndTime = dayjs(endTime).format('h:mm A');
+
+        const numberLimit = Number(limit);
+
+        const finalPayload = {
+            ...rest,
+            startDate: formattedStartDate,
+            startTime: formattedStartTime,
+            endDate: formattedEndDate,
+            endTime: formattedEndTime,
+            limit: numberLimit,
+        };
+
+        createPromocodeMutation(finalPayload);
     };
 
     const projectOptions = [
         { value: 'DreamSell', label: 'DreamSell' },
         { value: 'Project name 1', label: 'Project name 1' },
         { value: 'Project name 2', label: 'Project name 2' },
+        { value: 'Project name 3', label: 'Project name 3' },
+        { value: 'Project name 4', label: 'Project name 4' },
     ];
 
     const toggleSelect = (value) => {
         const newSelected = selectedProjects.includes(value)
-          ? selectedProjects.filter((v) => v !== value)
-          : [...selectedProjects, value];
+            ? selectedProjects.filter((v) => v !== value)
+            : [...selectedProjects, value];
         setSelectedProjects(newSelected);
-      };
-      
+    };
+
     return (
         <>
+            {contextHolder}
+
             <div>
                 <Form
                     layout="vertical"
@@ -46,7 +94,7 @@ const GeneratePromoCodeDrawer = ({ onClose }) => {
 
                             <Form.Item
                                 label="Project"
-                                name="project"
+                                name="projectName"
                                 rules={[{ required: true, message: 'Please select at least one project' }]}
                                 className='form-select-input'
                             >
@@ -102,10 +150,9 @@ const GeneratePromoCodeDrawer = ({ onClose }) => {
                                 </Select>
                             </Form.Item>
 
-
                             <Form.Item
-                                label="Promo Code"
-                                name="promoCode"
+                                label="Promo Code Limit"
+                                name="limit"
                                 rules={[{ required: true, message: 'Please enter promo code' }]}
                                 className='form-item'
                             >
@@ -162,7 +209,11 @@ const GeneratePromoCodeDrawer = ({ onClose }) => {
                             </Button>
 
                             <PrimaryButton htmlType="submit" style={{ width: "220px", fontSize: "14px", fontWeight: "600", height: "40px" }}>
-                                Save Promo Code
+                                {isPending ? (
+                                    <LoadingButton size="small" />
+                                ) : (
+                                    'Submit Request'
+                                )}
                             </PrimaryButton>
                         </div>
                     </div>

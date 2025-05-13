@@ -14,6 +14,7 @@ const Profile = () => {
     const [logoutDrawer, setLogoutDrawer] = useState(false);
     const { user } = useSelector((state) => state.user);
 
+    console.log(user, "user")
 
     return (
         <div className="w-full p-8 flex flex-col justify-between min-h-[500px]">
@@ -24,7 +25,7 @@ const Profile = () => {
                     <div className="flex gap-4 justify-center items-center">
                         <Avatar
                             size={60}
-                            src={profileImage}
+                            src={user.profileImage || profileImage}
                         />
                         <div className="flex gap-4">
                             <PrimaryButton style={{ height: "40px", width: "150px", fontSize: "15px" }}>

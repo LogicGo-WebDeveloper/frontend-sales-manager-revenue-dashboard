@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_USER } from './routes.config';
+import { API_USER } from './api-routes.config';
 
 // Create axios instance with default config
 const api = axios.create({
