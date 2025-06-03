@@ -8,7 +8,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoEyeOutline, IoFilter } from 'react-icons/io5'
 import SecondryButton from '../components/common/secondry.button'
 import PurchaseTransactionTable from '../components/purchase-transaction-table'
-import FilterDrawer from '../components/overview-filter-drawer'
+import FilterDrawer from '../components/filter-drawer'
 import DeleteDrawer from '../components/delete-drawer'
 import DeleteInvoiceImage from '../assets/images/delete-invoice-image.png';
 
@@ -114,7 +114,7 @@ const PurchaseTransaction = () => {
                 <FilterDrawer
                     onClose={() => setFilterDrawer(false)}
                     onApply={(values) => console.log('Filtered:', values)}
-                    panelsToShow={['date', 'platform', 'project', 'expiration', 'trial', 'sort']}
+                    panelsToShow={['date', 'platform', 'project', 'expiration', 'trial']}
                 />
             </Drawer>
 

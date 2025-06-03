@@ -7,7 +7,7 @@ import DeleteDrawer from '../components/delete-drawer';
 import DeleteInvoiceImage from '../assets/images/delete-invoice-image.png';
 import SecondryButton from '../components/common/secondry.button';
 import { IoIosArrowDown } from "react-icons/io";
-import FilterDrawer from '../components/overview-filter-drawer';
+import FilterDrawer from '../components/filter-drawer';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../config/route.const';
 

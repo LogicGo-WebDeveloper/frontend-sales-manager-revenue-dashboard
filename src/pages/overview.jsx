@@ -12,7 +12,7 @@ import CardIcon5 from '../assets/images/card-5-icon.png'
 import RecentPurchaseTable from '../components/recent-purchase-table.jsx';
 import { Drawer } from 'antd';
 import GeneratePromocodeDrawer from '../components/generate-promocode-drawer.jsx';
-import FilterDrawer from '../components/overview-filter-drawer.jsx';
+import FilterDrawer from '../components/filter-drawer.jsx';
 import { useSelector } from 'react-redux';
 
 const Overview = () => {

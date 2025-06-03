@@ -25,9 +25,7 @@ import DummyTestComponent from './pages/test'
 import ExampleComponent from './components/ExampleComponent'
 
 function App() {
-
-  // localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAwZDdiNTdhMjk4MjkwZDczODQ5MmYiLCJlbWFpbCI6ImRhcnNoMDEyLmxvZ2ljZ29AZ21haWwuY29tIiwiaWF0IjoxNzQ1OTAyODAwLCJleHAiOjE3Nzc0Mzg4MDB9.CUdCZmPY8YOGsvfpMY4Fr0cAbTTqDIPusMgBucDmRsA');
-
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Routes>

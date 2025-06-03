@@ -14,7 +14,7 @@ const Profile = () => {
     const [logoutDrawer, setLogoutDrawer] = useState(false);
     const { user } = useSelector((state) => state.user);
 
-    console.log(user, "user")
+    // console.log(user, "user")
 
     return (
         <div className="w-full p-8 flex flex-col justify-between min-h-[500px]">

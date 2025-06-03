@@ -9,7 +9,7 @@ import { ROUTES } from '../config/route.const';
 import { Drawer, Input, Table, Dropdown } from 'antd';
 import { SearchOutlined, MoreOutlined } from '@ant-design/icons';
 import SecondryButton from '../components/common/secondry.button';
-import FilterDrawer from '../components/overview-filter-drawer';
+import FilterDrawer from '../components/filter-drawer';
 import DeleteDrawer from '../components/delete-drawer';
 import DeleteInvoiceImage from '../assets/images/delete-transaction-image.png';
 import TransactionDetailsDawer from '../components/transaction-details-dawer';
