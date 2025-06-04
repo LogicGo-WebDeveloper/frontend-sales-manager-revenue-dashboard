@@ -4,7 +4,6 @@ import PrimaryButton from './common/primary.button';
 import { getValidationRule } from '../utils/validation';
 import { ROUTE_PATH } from '../config/api-routes.config';
 import { useMutate } from '../hooks/useQuery';
-import LoadingButton from '../components/common/loading-button';
 import { QUERY_KEYS, QUERY_METHODS } from '../config/query.const';
 import { useQueryClient } from '@tanstack/react-query';
 

@@ -6,7 +6,6 @@ import "../verify-otp/style.css";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ROUTE_PATH } from "../../config/api-routes.config";
 import { useMutate } from "../../hooks/useQuery";
-import Loader from "../../components/common/Loader";
 import { ROUTES } from "../../config/route.const";
 import LoadingButton from "../../components/common/loading-button";
 import { delay } from "../../utils/delay";

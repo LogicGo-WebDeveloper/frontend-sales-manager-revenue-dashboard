@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../config/route.const';
 import { ROUTE_PATH } from '../config/api-routes.config';
 import { useMutate } from '../hooks/useQuery';
-import Loader from '../components/common/Loader';
+import Loader from '../components/common/loader';
 import { delay } from '../utils/delay';
 import LoadingButton from '../components/common/loading-button';
 import { QUERY_KEYS, QUERY_METHODS } from '../config/query.const';
