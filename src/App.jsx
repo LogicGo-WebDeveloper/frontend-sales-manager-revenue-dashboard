@@ -30,14 +30,14 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Routes>
         {/* Auth Routes */}
-        <Route element={<UnAuthorizeLayout />}>
+        {/* <Route element={<UnAuthorizeLayout />}> */}
           <Route path={ROUTES.USER.SIGNUP} element={<Signup />} />
           <Route path={ROUTES.USER.LOGIN} element={<Login />} />
           <Route path={ROUTES.USER.VERIFY_OTP} element={<VerifyOtp />} />
           <Route path={ROUTES.USER.FORGET_PASSWORD} element={<ForgetPassword />} />
           <Route path={ROUTES.USER.CHANGE_PASSWORD} element={<ChangePassword />} />
           <Route path={ROUTES.USER.SUCCESS} element={<Success />} />
-        </Route>
+        {/* </Route> */}
 
         <Route path={ROUTES.DASHBOARD.OVERVIEW} element={<AuthorizePages />}>
           <Route path={ROUTES.DASHBOARD.OVERVIEW} element={<Overview />} />

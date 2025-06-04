@@ -1,4 +1,4 @@
-export const DOMAIN = "http://192.168.0.175:8001"
+export const DOMAIN = "http://134.209.70.84:8001"
 export const ADMIN = "admin"
 export const USER = "api"
 export const VERSION_V1 = "v1"
