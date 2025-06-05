@@ -17,7 +17,7 @@ export const ROUTES = {
         SETTING: '/setting',
         SETTING_PROFILE: '/setting/profile',
         SETTING_INVOICE_LIST: '/setting/invoice-list',
-        SETTING_INVOICE: '/setting/invoice',
+        SETTING_INVOICE: '/setting/invoice/:invoiceId',
         SETTING_PAYMENT: '/setting/payment',
         OPEN_TICKET: '/ticket/:ticketId',
         PURCHACE_TRANSACTION: '/purchase-transaction',

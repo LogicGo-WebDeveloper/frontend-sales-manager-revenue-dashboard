@@ -141,23 +141,23 @@ const TicketCard = ({ dateRange }) => {
         <>
             {contextHolder}
 
-            <div className="bg-white p-6 rounded-lg shadow-md flex flex-col h-[76vh]">
+            <div className="bg-white p-3 sm:p-6 rounded-lg shadow-md flex flex-col h-[76vh]">
                 {/* Sticky Tabs */}
-                <div className="sticky top-0 z-10 bg-white flex gap-8 pb-2 mb-4 text-[#2363E3]">
+                <div className="sticky top-0 z-10 bg-white flex flex-wrap gap-4 sm:gap-8 pb-2 mb-4 text-[#2363E3]">
                     <p
-                        className={`font-semibold cursor-pointer ${activeTab === 'all' ? 'border-b-2 border-[#2363E3]' : 'text-[#8D94A3]'}`}
+                        className={`font-semibold cursor-pointer text-sm sm:text-base ${activeTab === 'all' ? 'border-b-2 border-[#2363E3]' : 'text-[#8D94A3]'}`}
                         onClick={() => handleTabChange('all')}
                     >
                         All Ticket
                     </p>
                     <p
-                        className={`cursor-pointer ${activeTab === 'recent' ? 'border-b-2 border-[#2363E3] font-semibold' : 'text-[#8D94A3]'}`}
+                        className={`cursor-pointer text-sm sm:text-base ${activeTab === 'recent' ? 'border-b-2 border-[#2363E3] font-semibold' : 'text-[#8D94A3]'}`}
                         onClick={() => handleTabChange('recent')}
                     >
                         Recent Ticket
                     </p>
                     <p
-                        className={`cursor-pointer ${activeTab === 'resolved' ? 'border-b-2 border-[#2363E3] font-semibold' : 'text-[#8D94A3]'}`}
+                        className={`cursor-pointer text-sm sm:text-base ${activeTab === 'resolved' ? 'border-b-2 border-[#2363E3] font-semibold' : 'text-[#8D94A3]'}`}
                         onClick={() => handleTabChange('resolved')}
                     >
                         Resolved Ticket
@@ -174,48 +174,106 @@ const TicketCard = ({ dateRange }) => {
                         </div>
                     ) : (
                         filteredTickets.map((ticket) => (
-                            <div key={ticket._id} className="p-4 border-[#8d94a33f] border-1 rounded-lg mb-4">
-                                <div className="flex justify-between items-start">
-                                    <img src={profileImage} alt="" className="w-8 h-8 mt-1" />
+                            <div key={ticket._id} className="p-3 sm:p-4 border-[#8d94a33f] border-1 rounded-lg mb-4">
+                                {/* Mobile Layout - Fully Stacked */}
+                                <div className="sm:hidden flex flex-col p-3">
+                                    {/* Profile Image */}
+                                    {/* Avatar and 3-dot in one row */}
+<div className="flex items-center justify-between mb-1">
+    <img src={profileImage} alt="" className="w-8 h-8 flex-shrink-0" />
+    <Dropdown
+        placement="bottomRight"
+        menu={{ items: getMenuItems(ticket._id), style: { border: "1px solid #DCDFEA" } }}
+        trigger={['click']}
+    >
+        <BsThreeDotsVertical className="text-[#122751] cursor-pointer font-bold text-lg" />
+    </Dropdown>
+</div>
 
-                                    <div className="flex-1 ml-3 mt-2 pr-6 border-b border-[#8d94a325] pb-2">
-                                        <p className="font-semibold text-[#122751]">{ticket.email}</p>
-                                        <p className="font-medium text-[#122751] text-sm mt-2">{ticket.title}</p>
-                                        <p className="text-[#8D94A3] text-xs font-medium mt-1">{ticket.description}</p>
+{/* Email */}
+<div className="mb-2 mt-1">
+    <p className="font-semibold text-[#122751] text-sm break-words">{ticket.email}</p>
+</div>
+
+
+                                    {/* Title */}
+                                    <div className="mb-2">
+                                         <p className="font-medium text-[#122751] text-xs break-words">{ticket.title}</p>
                                     </div>
 
-                                    <div className="flex gap-2 min-w-fit">
-                                        <p className="text-[#122751] text-sm">
+                                    {/* Description */}
+                                    <div className="mb-3">
+                                         <p className="text-[#8D94A3] text-xs font-medium break-words line-clamp-3">{ticket.description}</p>
+                                    </div>
+
+                                    {/* Date/Time */}
+                                    <div className="text-xs text-[#122751] mb-2">
+                                        <p>
                                             {new Date(ticket.createdAt).toLocaleDateString("en-GB", {
                                                 day: "2-digit",
                                                 month: "long",
                                                 year: "2-digit",
-                                            })}
+                                            })} at {new Date(ticket.createdAt).toLocaleTimeString()}
                                         </p>
-
-                                        <Dropdown
-                                            placement="bottomRight"
-                                            menu={{ items: getMenuItems(ticket._id), style: { border: "1px solid #DCDFEA" } }}
-                                            trigger={['click']}
-                                        >
-                                            <BsThreeDotsVertical className="text-[#122751] cursor-pointer font-bold " />
-                                        </Dropdown>
                                     </div>
-                                </div>
 
-                                <div className="mt-3 flex justify-between pl-11">
-                                    <p className="text-[#122751] text-xs">
-                                        Posted at {new Date(ticket.createdAt).toLocaleTimeString()}
-                                    </p>
+                                    {/* Open Ticket Link */}
                                     {activeTab !== 'resolved' && (
-                                        <Link
-                                            to={`${ROUTES.DASHBOARD.OPEN_TICKET.replace(':ticketId', ticket._id)}`}
-                                            className="text-[#2363E3] font-semibold text-xs underline cursor-pointer"
-                                        >
-                                            Open Ticket
-                                        </Link>
+                                        <div className="flex justify-end">
+                                            <Link
+                                                to={`${ROUTES.DASHBOARD.OPEN_TICKET.replace(':ticketId', ticket._id)}`}
+                                                className="text-[#2363E3] font-semibold text-xs underline cursor-pointer"
+                                            >
+                                                Open Ticket
+                                            </Link>
+                                        </div>
                                     )}
 
+                                </div>
+
+                                {/* Desktop Layout */}
+                                <div className="hidden sm:block">
+                                    <div className="flex justify-between items-start">
+                                        <div className="flex items-start">
+                                            <img src={profileImage} alt="" className="w-8 h-8 mt-1 flex-shrink-0" />
+                                            <div className="ml-3 mt-2 pr-6 border-b border-[#8d94a325] pb-2">
+                                                <p className="font-semibold text-[#122751] break-words">{ticket.email}</p>
+                                                <p className="font-medium text-[#122751] text-sm mt-2 break-words">{ticket.title}</p>
+                                                <p className="text-[#8D94A3] text-xs font-medium mt-1 break-words">{ticket.description}</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex gap-2 min-w-fit">
+                                            <p className="text-[#122751] text-sm">
+                                                {new Date(ticket.createdAt).toLocaleDateString("en-GB", {
+                                                    day: "2-digit",
+                                                    month: "long",
+                                                    year: "2-digit",
+                                                })}
+                                            </p>
+                                            <Dropdown
+                                                placement="bottomRight"
+                                                menu={{ items: getMenuItems(ticket._id), style: { border: "1px solid #DCDFEA" } }}
+                                                trigger={['click']}
+                                            >
+                                                <BsThreeDotsVertical className="text-[#122751] cursor-pointer font-bold" />
+                                            </Dropdown>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-3 flex justify-between pl-11">
+                                        <p className="text-[#122751] text-xs">
+                                            Posted at {new Date(ticket.createdAt).toLocaleTimeString()}
+                                        </p>
+                                        {activeTab !== 'resolved' && (
+                                            <Link
+                                                to={`${ROUTES.DASHBOARD.OPEN_TICKET.replace(':ticketId', ticket._id)}`}
+                                                className="text-[#2363E3] font-semibold text-xs underline cursor-pointer"
+                                            >
+                                                Open Ticket
+                                            </Link>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         ))
@@ -225,13 +283,14 @@ const TicketCard = ({ dateRange }) => {
                 {/* Sticky Pagination */}
                 {
                     activeTab === 'recent' ? <></> : (
-
-                        <div className="sticky bottom-0 z-10 bg-white  flex justify-end pt-2">
+                        <div className="sticky bottom-0 z-10 bg-white flex justify-center sm:justify-end pt-2">
                             <Pagination
                                 current={currentPage}
                                 pageSize={pageSize}
                                 total={data?.pagination?.totalItems || 0}
                                 onChange={(page) => setCurrentPage(page)}
+                                size="small"
+                                className="responsive-pagination"
                             />
                         </div>
                     )
@@ -244,7 +303,7 @@ const TicketCard = ({ dateRange }) => {
                 placement="right"
                 onClose={() => setDeleteTicketDrawer(false)}
                 open={deleteTicketDrawer}
-                width={600}
+                width={window.innerWidth < 768 ? '100%' : 600}
                 closable={false}
             >
                 <DeleteDrawer

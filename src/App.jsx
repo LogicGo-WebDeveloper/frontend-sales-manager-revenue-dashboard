@@ -21,7 +21,6 @@ import PurchaseTransaction from './pages/purchase-transaction'
 import NewLead from './pages/new-lead'
 import ErrorPage from './pages/error-page'
 import Invoice from './pages/invoice'
-import DummyTestComponent from './pages/test'
 import ExampleComponent from './components/ExampleComponent'
 
 function App() {
@@ -55,7 +54,6 @@ function App() {
           <Route path={ROUTES.DASHBOARD.OPEN_TICKET} element={<OpenTicket />} />
           <Route path={ROUTES.DASHBOARD.PURCHACE_TRANSACTION} element={<PurchaseTransaction />} />
           <Route path={ROUTES.DASHBOARD.NEW_LEAD} element={<NewLead />} />
-          <Route path='/test' element={<DummyTestComponent />} />
         </Route>
 
         {/* Error Routes */}

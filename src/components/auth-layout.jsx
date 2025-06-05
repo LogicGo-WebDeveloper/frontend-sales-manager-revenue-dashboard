@@ -6,7 +6,7 @@ const AuthLayout = ({ children }) => {
     return (
         <div className="flex min-h-screen overflow-hidden">
             {/* Left Side - Auth Form */}
-            <div className="w-full lg:w-1/2 flex justify-center p-6 sm:p-10">
+            <div className="w-full lg:w-1/2 flex justify-center items-center p-6 sm:p-10 h-screen">
                 <div className="w-full max-w-lg">
                     <div className="flex items-center mb-7">
                         <img

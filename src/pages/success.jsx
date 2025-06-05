@@ -24,7 +24,7 @@ const Success = () => {
 
     return (
         <AuthLayout>
-            <div className="flex flex-col items-center text-center justify-center h-full pb-[40%]">
+            <div className="flex flex-col items-center text-center justify-center h-full ">
                 <img src={successIcon} alt="Success" className="w-[110px] h-[110px] mb-4" />
 
                 <div className="w-full">

@@ -19,8 +19,7 @@ const Overview = () => {
 
   const [isPromoDrawerOpen, setPromoDrawerOpen] = useState(false);
   const [isFilterDrawerOpen, setFilterDrawerOpen] = useState(false);
-
-
+  const { user } = useSelector((state) => state.user);
 
   return (
     <>
@@ -29,7 +28,7 @@ const Overview = () => {
         {/* Top Header */}
         <div className="flex justify-between items-start flex-wrap gap-4 mb-6  ">
           <div>
-            <h1 className="text-xl font-semibold text-[#122751]">Welcome Back, Jack!</h1>
+            <h1 className="text-xl font-semibold text-[#122751]">Welcome Back, {user?.username}!</h1>
             <p className="text-sm text-[#8D94A3] mt-1">Here's what's going on today</p>
           </div>
 

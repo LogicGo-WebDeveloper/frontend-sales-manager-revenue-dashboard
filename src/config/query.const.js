@@ -7,6 +7,7 @@ export const QUERY_KEYS = {
         FORGOT_PASSWORD : "forgot-password",
         CHANGE_PASSWORD : "change-password",
         PROFILE : "profile",
+        GOOGLE_LOGIN : "google-login"
     },
     SUPPORT_TICKET : {
         CREATE : "create-ticket",
@@ -25,6 +26,13 @@ export const QUERY_KEYS = {
         LIST : "account",
         DELETE : "delete-account",
         UPDATE : "update-account"
+    },
+    INVOICE: {
+        CREATE : "create-invoice",
+        LIST : "list-invoice",
+        DELETE : "delete-invoice",
+        UPDATE : "update-invoice",
+        GET_INVOICE : "get-invoice"
     }
 }
 
