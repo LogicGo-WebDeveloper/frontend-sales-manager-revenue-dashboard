@@ -30,22 +30,22 @@ const Setting = () => {
           onClick={() => navigate(ROUTES.DASHBOARD.OVERVIEW)} 
         />
         <div>
-          <h1 className="text-xl font-semibold text-[#122751]">Setting</h1>
-          <p className="text-sm text-[#8D94A3] mt-1">
+          <h1 className="sm:text-xl text-base font-semibold text-[#122751]">Setting</h1>
+          <p className="sm:text-sm text-xs text-[#8D94A3] mt-1">
             Manage Your Sales Settings and Optimize Revenue Performance
           </p>
         </div>
       </div>
 
       {/* Main Card */}
-      <div className="flex min-h-full gap-x-4">
+      <div className="flex flex-col md:flex-row min-h-full gap-4">
         {/* Sidebar */}
-        <div className="bg-white rounded-lg shadow-sm border-r border-gray-200 w-64 p-6">
+        <div className="bg-white rounded-lg shadow-sm border-r md:border-b-0 md:border-r border-gray-200 w-full md:w-50 p-6">
           {/* Main Tabs */}
           <div className="flex flex-col gap-4">
             <Link
               to={ROUTES.DASHBOARD.SETTING_PROFILE}
-              className={`cursor-pointer text-[15px] font-medium ${isActiveTab(ROUTES.DASHBOARD.SETTING_PROFILE) ? 'text-[#2363E3]' : 'text-[#8D94A3]'}`}
+              className={`cursor-pointer sm:text-base text-sm font-medium ${isActiveTab(ROUTES.DASHBOARD.SETTING_PROFILE) ? 'text-[#2363E3]' : 'text-[#8D94A3]'}`}
             >
               Profile
             </Link>
@@ -53,7 +53,7 @@ const Setting = () => {
             <div>
               <Link
                 to={ROUTES.DASHBOARD.SETTING_INVOICE_LIST}
-                className={`cursor-pointer text-[15px] font-medium flex items-center ${isBillingTabActive ? 'text-[#2363E3]' : 'text-[#8D94A3]'}`}
+                className={`cursor-pointer sm:text-base text-sm font-medium flex items-center ${isBillingTabActive ? 'text-[#2363E3]' : 'text-[#8D94A3]'}`}
               >
                 Billing Details
                 {isBillingTabActive ? (
@@ -70,7 +70,7 @@ const Setting = () => {
                     <li>
                       <Link
                         to={ROUTES.DASHBOARD.SETTING_INVOICE_LIST}
-                        className={`text-[15px] cursor-pointer py-1 rounded-md block ${
+                        className={`sm:text-base text-sm cursor-pointer py-1 rounded-md block ${
                           isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE_LIST) || isActiveTab(ROUTES.DASHBOARD.SETTING_INVOICE)
                             ? 'text-[#122751] font-normal'
                             : 'text-[#8D94A3]'
@@ -82,7 +82,7 @@ const Setting = () => {
                     <li>
                       <Link
                         to={ROUTES.DASHBOARD.SETTING_PAYMENT}
-                        className={`text-[15px] cursor-pointer py-1 rounded-md block ${
+                        className={`sm:text-base text-sm cursor-pointer py-1 rounded-md block ${
                           isActiveTab(ROUTES.DASHBOARD.SETTING_PAYMENT)
                             ? 'text-[#122751] font-normal'
                             : 'text-[#8D94A3]'
@@ -98,8 +98,8 @@ const Setting = () => {
           </div>
         </div>
 
-        {/* Right Content Area */}
-        <div className="bg-white rounded-lg shadow-sm flex-1">
+          {/* Right Content Area */}
+        <div className="bg-white rounded-lg shadow-sm flex-1 mt-4 md:mt-0">
           <Outlet />
         </div>
       </div>

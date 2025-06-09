@@ -181,134 +181,137 @@ const Invoice = () => {
   };
 
   return (
-    <div className="p-6">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-        <div className="md:w-1/3">
-          <h2 className="text-base font-semibold text-[#122751]">
-            All Invoices
-          </h2>
+    <div className="w-full h-full overflow-hidden">
+      <div className="p-4 md:p-6 h-full overflow-x-auto">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+          <div className="md:w-1/3">
+            <h2 className="sm:text-base text-sm font-semibold text-[#122751]">
+              All Invoices
+            </h2>
+          </div>
+
+          <div className="md:w-3/4 flex justify-center">
+            <Input
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+              style={{ width: "100%", maxWidth: 300, height: 40 }}
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
+
+          <div className="md:w-1/3 flex justify-end">
+            <SecondryButton
+              style={{
+                height: 40,
+                borderColor: "#D0D5DD",
+                color: "#122751",
+                fontWeight: 500,
+              }}
+              onClick={() => setFilterDrawer(true)}
+            >
+              <IoFilter /> Filter
+            </SecondryButton>
+          </div>
         </div>
 
-        <div className="md:w-3/4 flex justify-center">
-          <Input
-            placeholder="Search"
-            prefix={<SearchOutlined />}
-            style={{ width: "100%", maxWidth: 300, height: 40 }}
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
+        <div className="text-[#122751] font-medium text-xs sm:text-sm mb-2">
+          Billing Cycle : 01 March 2025 - 01 April 2025
         </div>
 
-        <div className="md:w-1/3 flex justify-end">
-          <SecondryButton
-            style={{
-              height: 40,
-              borderColor: "#D0D5DD",
-              color: "#122751",
-              fontWeight: 500,
-            }}
-            onClick={() => setFilterDrawer(true)}
-          >
-            <IoFilter /> Filter
-          </SecondryButton>
-        </div>
-      </div>
-
-      <div className="text-[#122751] font-medium text-sm mb-2">
-        Billing Cycle : 01 March 2025 - 01 April 2025
-      </div>
-
-      {isLoading ? (
-        <div className="flex justify-center items-center h-[calc(60vh-100px)]">
-          <Loader />
-        </div>
-      ) : isError ? (
-        <div className="text-red-500 text-center h-64 flex items-center justify-center">
-          Error loading invoices: {error.message}
-        </div>
-      ) : (
-        <Table
-          rowSelection={rowSelection}
-          columns={columns}
-          dataSource={data?.body || []}
-          scroll={{ x: 500, y: 290 }}
-          className="custom-ant-table"
-          bordered
-          pagination={false}
-          footer={() => (
-            <div className="flex justify-between items-center px-4 py-2">
-              <div className="flex items-center gap-2">
-                <span className="text-[#122751] font-medium">Show</span>
-                <Select
-                  value={pageSize}
-                  onChange={(value) => {
-                    setPageSize(value);
-                    setCurrentPage(1);
-                  }}
-                  style={{ width: 80 }}
-                  options={[
-                    { value: 10, label: "10" },
-                    { value: 20, label: "20" },
-                    { value: 30, label: "30" },
-                  ]}
-                  size="small"
-                  className="rounded-md"
-                />
-                <span className="text-[#122751] font-medium">entries</span>
-              </div>
-              {selectedRowKeys.length > 0 && (
-                <div className="flex items-center gap-4">
-                  <span className="text-[#122751] font-medium">
-                    {selectedRowKeys.length} Selected
-                  </span>
-
-                  <Dropdown
-                    menu={{
-                      items: [
-                        {
-                          key: "delete",
-                          label: (
-                            <div
-                              className="flex items-center gap-2"
-                              onClick={() => setDeleteInvoiceDrawer(true)}
-                            >
-                              <HiOutlineTrash size={18} color="#2363E3" />
-                              <span className="text-[#122751]">
-                                Delete Invoice
-                              </span>
-                            </div>
-                          ),
-                        },
-                      ],
-                    }}
-                    trigger={["click"]}
-                    placement="top"
-                  >
-                    <Button
-                      style={{
-                        color: "#122751",
-                        fontWeight: "500",
-                        padding: "18px 10px",
-                        borderRadius: "10px",
+        {isLoading ? (
+          <div className="flex justify-center items-center h-[calc(60vh-100px)]">
+            <Loader />
+          </div>
+        ) : isError ? (
+          <div className="text-red-500 text-center h-64 flex items-center justify-center text-sm">
+            Error loading invoices: {error.message}
+          </div>
+        ) : (
+          <div className="w-full overflow-x-auto">
+            <Table
+              rowSelection={rowSelection}
+              columns={columns}
+              dataSource={data?.body || []}
+              scroll={{ x: 800 }}
+              className="custom-ant-table"
+              bordered
+              pagination={false}
+              footer={() => (
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#122751] font-medium">Show</span>
+                    <Select
+                      value={pageSize}
+                      onChange={(value) => {
+                        setPageSize(value);
+                        setCurrentPage(1);
                       }}
-                    >
-                      Action <IoIosArrowDown />
-                    </Button>
-                  </Dropdown>
+                      style={{ width: 80 }}
+                      options={[
+                        { value: 10, label: "10" },
+                        { value: 20, label: "20" },
+                        { value: 30, label: "30" },
+                      ]}
+                      size="small"
+                      className="rounded-md"
+                    />
+                    <span className="text-[#122751] font-medium">entries</span>
+                  </div>
+                  {selectedRowKeys.length > 0 && (
+                    <div className="flex items-center gap-4">
+                      <span className="text-[#122751] font-medium">
+                        {selectedRowKeys.length} Selected
+                      </span>
+
+                      <Dropdown
+                        menu={{
+                          items: [
+                            {
+                              key: "delete",
+                              label: (
+                                <div
+                                  className="flex items-center gap-2"
+                                  onClick={() => setDeleteInvoiceDrawer(true)}
+                                >
+                                  <HiOutlineTrash size={18} color="#2363E3" />
+                                  <span className="text-[#122751]">
+                                    Delete Invoice
+                                  </span>
+                                </div>
+                              ),
+                            },
+                          ],
+                        }}
+                        trigger={["click"]}
+                        placement="top"
+                      >
+                        <Button
+                          style={{
+                            color: "#122751",
+                            fontWeight: "500",
+                            padding: "18px 10px",
+                            borderRadius: "10px",
+                          }}
+                        >
+                          Action <IoIosArrowDown />
+                        </Button>
+                      </Dropdown>
+                    </div>
+                  )}
+
+                  <Pagination
+                    align="start"
+                    current={currentPage}
+                    pageSize={pageSize}
+                    total={data?.pagination?.totalItems || 0}
+                    onChange={handlePaginationChange}
+                  />
                 </div>
               )}
-
-              <Pagination
-                align="start"
-                current={currentPage}
-                pageSize={pageSize}
-                total={data?.pagination?.totalItems || 0}
-                onChange={handlePaginationChange}
-              />
-            </div>
-          )}
-        />
-      )}
+            />
+          </div>
+        )}
 
       <Drawer
         title="Delete Invoice"
@@ -342,6 +345,7 @@ const Invoice = () => {
         />
       </Drawer>
     </div>
+  </div>
   );
 };
 

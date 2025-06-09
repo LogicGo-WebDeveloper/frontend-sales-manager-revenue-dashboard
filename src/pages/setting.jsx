@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { HiArrowNarrowLeft } from "react-icons/hi";
-import Profile from '../components/profile';
-import Invoice from '../components/invoice';
-import PaymentMethod from '../components/payment-method';
+import Profile from '../pages/profile';
+import Invoice from '../pages/invoice-list';
+import PaymentMethod from '../pages/payment-method';
 import { RiArrowRightSLine } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
